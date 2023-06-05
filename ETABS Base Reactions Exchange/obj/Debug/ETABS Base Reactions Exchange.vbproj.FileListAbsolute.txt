@@ -1,0 +1,31 @@
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.AssemblyReference.cache
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.SuggestedBindingRedirects.cache
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS_Base_Reactions_Exchange.Resources.resources
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.GenerateResource.cache
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.CoreCompileInputs.cache
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.exe.config
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.exe
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.pdb
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.xml
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\CSiAPIv1.dll
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\CSiDetailAPI.dll
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABSv1.dll
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.CopyComplete
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.exe
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.xml
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.pdb
+C:\Users\galbieri\source\repos\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS_Base_Reactions_Exchange.formMain.resources
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.exe.config
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.exe
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.pdb
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\bin\Debug\ETABS Base Reactions Exchange.xml
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.AssemblyReference.cache
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.SuggestedBindingRedirects.cache
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS_Base_Reactions_Exchange.formMain.resources
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS_Base_Reactions_Exchange.Resources.resources
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.GenerateResource.cache
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.CoreCompileInputs.cache
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.vbproj.CopyComplete
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.exe
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.xml
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.pdb
