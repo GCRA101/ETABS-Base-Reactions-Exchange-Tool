@@ -34,7 +34,7 @@ Public Class formMain
     'ETABS OAPI Utility Variables
     Dim loadCasesNum, storyNumNames As Integer
     Dim loadCaseName, storyName As String
-    Dim loadCasesNames(), storyNames() As String
+    Dim loadCasesNames(), storyNames(), groupNames() As String
     Dim ReactPoints_GroupName As String
     Const etabsVisibility As Boolean = False
 
@@ -93,6 +93,9 @@ Public Class formMain
 
     End Sub
 
+    Private Sub lblGroups_Click(sender As Object, e As EventArgs) Handles lblGroups.Click
+
+    End Sub
 
     Private Sub InitializeForm()
 
@@ -177,21 +180,39 @@ Public Class formMain
         End With
 
 
-        Dim NumberStories As Integer
-        Dim StoryNames(), SimilarToStory() As String
-        Dim StoryElevations(), StoryHeights(), SpliceHeight() As Double
-        Dim IsMasterStory(), SpliceAbove() As Boolean
+        'EXTRACT STORY NAMES
 
-        sourceEtabsModel.Story.GetStories(NumberStories, StoryNames, StoryElevations, StoryHeights, IsMasterStory,
-                                          SimilarToStory, SpliceAbove, SpliceHeight)
+        Dim numberStories As Integer
+        Dim storyNames(), similarToStory() As String
+        Dim storyElevations(), storyHeights(), spliceHeight() As Double
+        Dim isMasterStory(), spliceAbove() As Boolean
 
+        ret = sourceEtabsModel.Story.GetStories(numberStories, storyNames, storyElevations,
+                                                storyHeights, isMasterStory, similarToStory,
+                                                spliceAbove, spliceHeight)
 
         With Me.cklbStories
             .SelectionMode = SelectionMode.One
             .CheckOnClick = True
-            .Items.AddRange(StoryNames)
+            .Items.AddRange(storyNames)
             .ClearSelected()
         End With
+
+
+        'EXTRACT GROUP NAMES
+
+        Dim numberGroups As Integer
+        Dim groupNames() As String
+
+        ret = sourceEtabsModel.GroupDef.GetNameList(numberGroups, groupNames)
+
+        With Me.cklbGroups
+            .CheckOnClick = True
+            .Items.AddRange(groupNames)
+            .ClearSelected()
+        End With
+
+
 
     End Sub
 
@@ -262,6 +283,12 @@ Public Class formMain
             storyNames(i) = CStr(Me.cklbStories.CheckedItems(i))
         Next
 
+        'Get the selected Groups
+        ReDim groupNames(Me.cklbGroups.CheckedItems.Count - 1)
+        For i = 0 To (Me.cklbGroups.CheckedItems.Count - 1) Step 1
+            groupNames(i) = CStr(Me.cklbGroups.CheckedItems(i))
+        Next
+
         'Set Load Cases to Run
         ret = sourceEtabsModel.Analyze.SetRunCaseFlag("", False, True)
         For Each loadCaseName In loadCasesNames
@@ -272,7 +299,7 @@ Public Class formMain
 
 
 
-        Dim baseJointsReactions As JointReactions()
+        Dim baseJointsData As JointData()
 
         Dim Name As String
         Dim ItemTypeElm As ETABSv1.eItemTypeElm
@@ -286,13 +313,44 @@ Public Class formMain
 
         Dim ppNumberNames As Integer
         Dim ppNames As String()
+        Dim ppNamesByStoryList As List(Of String()) = New List(Of String())
 
 
         For Each storyName In storyNames
             ret = sourceEtabsModel.PointObj.GetNameListOnStory(storyName, ppNumberNames, ppNames)
+            ppNamesByStoryList.Add(ppNames)
         Next
 
-        ReDim baseJointsReactions(ppNumberNames - 1)
+
+        Dim numGroups As Integer, ppGroups() As String
+        Dim groupFound As Boolean
+        Dim ppNamesByGroupList As List(Of String) = New List(Of String)
+
+
+        For Each dataRow As String() In ppNamesByStoryList
+            For Each ppName In dataRow
+                ret = sourceEtabsModel.PointObj.GetGroupAssign(ppName, numGroups, ppGroups)
+                For Each ppGroup In ppGroups
+                    groupFound = False
+                    For Each selGroup In groupNames
+                        If ppGroup = selGroup Then
+                            groupFound = True
+                            ppNamesByGroupList.Add(ppName)
+                            Exit For
+                        End If
+                    Next
+                    If groupFound = True Then
+                        Exit For
+                    End If
+                Next
+            Next
+        Next
+
+
+        ppNumberNames = ppNamesByGroupList.Count
+        ppNames = ppNamesByGroupList.ToArray()
+
+        ReDim baseJointsData(ppNumberNames - 1)
 
         ret = sourceEtabsModel.Results.Setup.DeselectAllCasesAndCombosForOutput
 
@@ -305,9 +363,9 @@ Public Class formMain
                                              StepType, StepNum, F1, F2, F3, M1, M2, M3)
             ret = sourceEtabsModel.PointObj.GetCoordCartesian(ppNames(i), ppX, ppY, ppZ)
 
-            baseJointsReactions(i) = New JointReactions()
+            baseJointsData(i) = New JointData()
 
-            With baseJointsReactions(i)
+            With baseJointsData(i)
                 .setName(ppNames(i))
                 .setItemTypeElm(ItemTypeElm)
                 .setNumberResults(NumberResults)
@@ -344,7 +402,7 @@ Public Class formMain
         ret = targetEtabsModel.PointObj.GetNameListOnStory(storyName, ppNumberNames, ppNames)
 
 
-        For Each bjr As JointReactions In baseJointsReactions
+        For Each bjd As JointData In baseJointsData
             For i = 0 To UBound(ppNames) Step 1
 
                 ppMatch = False
@@ -355,12 +413,12 @@ Public Class formMain
                 ppY = Math.Round(ppY, numDecimals)
                 ppZ = Math.Round(ppZ, numDecimals)
 
-                If ((Math.Round(bjr.getX(), numDecimals) = ppX) And (Math.Round(bjr.getY()) = ppY) And (Math.Round(bjr.getZ()) = ppZ)) Then
+                If ((Math.Round(bjd.getX(), numDecimals) = ppX) And (Math.Round(bjd.getY()) = ppY) And (Math.Round(bjd.getZ()) = ppZ)) Then
                     ppMatch = True
-                    For j = 0 To UBound(bjr.getLoadCases) Step 1
-                        Dim pointForces() As Double = {bjr.getF1(j) * (-1), bjr.getF2(j) * (-1), bjr.getF3(j) * (-1),
-                                                       bjr.getM1(j) * (-1), bjr.getM2(j) * (-1), bjr.getM3(j) * (-1)}
-                        ret = targetEtabsModel.PointObj.SetLoadForce(ppNames(i), bjr.getLoadCases()(j), pointForces, True)
+                    For j = 0 To UBound(bjd.getLoadCases) Step 1
+                        Dim pointForces() As Double = {bjd.getF1(j) * (-1), bjd.getF2(j) * (-1), bjd.getF3(j) * (-1),
+                                                       bjd.getM1(j) * (-1), bjd.getM2(j) * (-1), bjd.getM3(j) * (-1)}
+                        ret = targetEtabsModel.PointObj.SetLoadForce(ppNames(i), bjd.getLoadCases()(j), pointForces, True)
                         ret = targetEtabsModel.PointObj.SetGroupAssign(ppNames(i), ReactPoints_GroupName, False, eItemType.Objects)
                     Next
                     Exit For
@@ -368,12 +426,12 @@ Public Class formMain
             Next
 
             If ppMatch = False Then
-                Dim ppNewName As String = bjr.getName + "0000"
-                ret = targetEtabsModel.PointObj.AddCartesian(bjr.getX, bjr.getY, bjr.getZ, ppNewName)
-                For k = 0 To UBound(bjr.getLoadCases) Step 1
-                    Dim pointForces() As Double = {bjr.getF1(k) * (-1), bjr.getF2(k) * (-1), bjr.getF3(k) * (-1),
-                                                   bjr.getM1(k) * (-1), bjr.getM2(k) * (-1), bjr.getM3(k) * (-1)}
-                    ret = targetEtabsModel.PointObj.SetLoadForce(ppNewName, bjr.getLoadCases(k), pointForces, True)
+                Dim ppNewName As String = bjd.getName + "0000"
+                ret = targetEtabsModel.PointObj.AddCartesian(bjd.getX, bjd.getY, bjd.getZ, ppNewName)
+                For k = 0 To UBound(bjd.getLoadCases) Step 1
+                    Dim pointForces() As Double = {bjd.getF1(k) * (-1), bjd.getF2(k) * (-1), bjd.getF3(k) * (-1),
+                                                   bjd.getM1(k) * (-1), bjd.getM2(k) * (-1), bjd.getM3(k) * (-1)}
+                    ret = targetEtabsModel.PointObj.SetLoadForce(ppNewName, bjd.getLoadCases(k), pointForces, True)
                     ret = targetEtabsModel.PointObj.SetGroupAssign(ppNewName, ReactPoints_GroupName, False, eItemType.Objects)
                 Next
             End If
@@ -403,7 +461,7 @@ End Class
 
 
 
-Public Class JointReactions
+Public Class JointData
 
     'ATTRIBUTES
     Private Property Name As String

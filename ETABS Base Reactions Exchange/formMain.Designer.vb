@@ -35,6 +35,8 @@ Partial Class formMain
         Me.lblTolerance = New System.Windows.Forms.Label()
         Me.cbTolerances = New System.Windows.Forms.ComboBox()
         Me.lblTolUnits = New System.Windows.Forms.Label()
+        Me.cklbGroups = New System.Windows.Forms.CheckedListBox()
+        Me.lblGroups = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ofdEtabsSourceFile
@@ -47,7 +49,7 @@ Partial Class formMain
         '
         'btnOpenSourceFile
         '
-        Me.btnOpenSourceFile.Location = New System.Drawing.Point(47, 49)
+        Me.btnOpenSourceFile.Location = New System.Drawing.Point(45, 49)
         Me.btnOpenSourceFile.Margin = New System.Windows.Forms.Padding(4)
         Me.btnOpenSourceFile.Name = "btnOpenSourceFile"
         Me.btnOpenSourceFile.Size = New System.Drawing.Size(165, 41)
@@ -57,7 +59,7 @@ Partial Class formMain
         '
         'btnOpenTargetFile
         '
-        Me.btnOpenTargetFile.Location = New System.Drawing.Point(228, 49)
+        Me.btnOpenTargetFile.Location = New System.Drawing.Point(225, 49)
         Me.btnOpenTargetFile.Margin = New System.Windows.Forms.Padding(4)
         Me.btnOpenTargetFile.Name = "btnOpenTargetFile"
         Me.btnOpenTargetFile.Size = New System.Drawing.Size(165, 41)
@@ -68,25 +70,26 @@ Partial Class formMain
         'cklbLoadCases
         '
         Me.cklbLoadCases.FormattingEnabled = True
-        Me.cklbLoadCases.Location = New System.Drawing.Point(47, 281)
+        Me.cklbLoadCases.Location = New System.Drawing.Point(45, 388)
         Me.cklbLoadCases.Margin = New System.Windows.Forms.Padding(4)
         Me.cklbLoadCases.Name = "cklbLoadCases"
-        Me.cklbLoadCases.Size = New System.Drawing.Size(345, 106)
+        Me.cklbLoadCases.Size = New System.Drawing.Size(345, 123)
         Me.cklbLoadCases.TabIndex = 2
         '
         'lblLoadCases
         '
         Me.lblLoadCases.AutoSize = True
-        Me.lblLoadCases.Location = New System.Drawing.Point(44, 261)
+        Me.lblLoadCases.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblLoadCases.Location = New System.Drawing.Point(42, 361)
         Me.lblLoadCases.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblLoadCases.Name = "lblLoadCases"
-        Me.lblLoadCases.Size = New System.Drawing.Size(91, 16)
+        Me.lblLoadCases.Size = New System.Drawing.Size(98, 20)
         Me.lblLoadCases.TabIndex = 4
         Me.lblLoadCases.Text = "LOAD CASES"
         '
         'btnTransferReactions
         '
-        Me.btnTransferReactions.Location = New System.Drawing.Point(121, 463)
+        Me.btnTransferReactions.Location = New System.Drawing.Point(124, 584)
         Me.btnTransferReactions.Margin = New System.Windows.Forms.Padding(4)
         Me.btnTransferReactions.Name = "btnTransferReactions"
         Me.btnTransferReactions.Size = New System.Drawing.Size(192, 47)
@@ -97,26 +100,27 @@ Partial Class formMain
         'cklbStories
         '
         Me.cklbStories.FormattingEnabled = True
-        Me.cklbStories.Location = New System.Drawing.Point(48, 137)
+        Me.cklbStories.Location = New System.Drawing.Point(45, 137)
         Me.cklbStories.Margin = New System.Windows.Forms.Padding(4)
         Me.cklbStories.Name = "cklbStories"
-        Me.cklbStories.Size = New System.Drawing.Size(345, 106)
+        Me.cklbStories.Size = New System.Drawing.Size(345, 89)
         Me.cklbStories.TabIndex = 7
         '
         'lblStories
         '
         Me.lblStories.AutoSize = True
-        Me.lblStories.Location = New System.Drawing.Point(43, 117)
+        Me.lblStories.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStories.Location = New System.Drawing.Point(43, 113)
         Me.lblStories.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblStories.Name = "lblStories"
-        Me.lblStories.Size = New System.Drawing.Size(72, 16)
+        Me.lblStories.Size = New System.Drawing.Size(71, 20)
         Me.lblStories.TabIndex = 8
         Me.lblStories.Text = "STOREYS"
         '
         'lblTolerance
         '
         Me.lblTolerance.AutoSize = True
-        Me.lblTolerance.Location = New System.Drawing.Point(43, 415)
+        Me.lblTolerance.Location = New System.Drawing.Point(49, 538)
         Me.lblTolerance.Name = "lblTolerance"
         Me.lblTolerance.Size = New System.Drawing.Size(161, 16)
         Me.lblTolerance.TabIndex = 9
@@ -126,7 +130,7 @@ Partial Class formMain
         '
         Me.cbTolerances.FormattingEnabled = True
         Me.cbTolerances.Items.AddRange(New Object() {"0.1", "0.01", "0.001", "0.0001", "0.00001", "0.000001", "0.00000001"})
-        Me.cbTolerances.Location = New System.Drawing.Point(210, 412)
+        Me.cbTolerances.Location = New System.Drawing.Point(216, 535)
         Me.cbTolerances.Name = "cbTolerances"
         Me.cbTolerances.Size = New System.Drawing.Size(143, 24)
         Me.cbTolerances.TabIndex = 11
@@ -134,17 +138,39 @@ Partial Class formMain
         'lblTolUnits
         '
         Me.lblTolUnits.AutoSize = True
-        Me.lblTolUnits.Location = New System.Drawing.Point(359, 415)
+        Me.lblTolUnits.Location = New System.Drawing.Point(365, 538)
         Me.lblTolUnits.Name = "lblTolUnits"
         Me.lblTolUnits.Size = New System.Drawing.Size(26, 16)
         Me.lblTolUnits.TabIndex = 12
         Me.lblTolUnits.Text = "[m]"
         '
+        'cklbGroups
+        '
+        Me.cklbGroups.FormattingEnabled = True
+        Me.cklbGroups.Location = New System.Drawing.Point(45, 268)
+        Me.cklbGroups.Margin = New System.Windows.Forms.Padding(4)
+        Me.cklbGroups.Name = "cklbGroups"
+        Me.cklbGroups.Size = New System.Drawing.Size(345, 89)
+        Me.cklbGroups.TabIndex = 13
+        '
+        'lblGroups
+        '
+        Me.lblGroups.AutoSize = True
+        Me.lblGroups.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblGroups.Location = New System.Drawing.Point(41, 239)
+        Me.lblGroups.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblGroups.Name = "lblGroups"
+        Me.lblGroups.Size = New System.Drawing.Size(69, 20)
+        Me.lblGroups.TabIndex = 14
+        Me.lblGroups.Text = "GROUPS"
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(429, 549)
+        Me.ClientSize = New System.Drawing.Size(429, 664)
+        Me.Controls.Add(Me.lblGroups)
+        Me.Controls.Add(Me.cklbGroups)
         Me.Controls.Add(Me.lblTolUnits)
         Me.Controls.Add(Me.cbTolerances)
         Me.Controls.Add(Me.lblTolerance)
@@ -176,4 +202,6 @@ Partial Class formMain
     Friend WithEvents lblTolerance As Label
     Friend WithEvents cbTolerances As ComboBox
     Friend WithEvents lblTolUnits As Label
+    Friend WithEvents cklbGroups As CheckedListBox
+    Friend WithEvents lblGroups As Label
 End Class
