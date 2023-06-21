@@ -13,7 +13,8 @@ Imports CSiAPIv1
 '''     - SORT + BINARY SEARCH FOR GROUPS SEARCHING
 '''     - REFACTOR ALL CODE CREATING SETS OF SUPER AND SUB CLASSES USING INHERITANCE
 '''       TO DEFINE ALL THEIR PARAMETERS CONTAINING ETABS OUTPUTS (NUMBER GROUPS, NUMBERSTORIES...)
-'''     
+'''     - ADD SPLASHSCREEN AND FRONT WINDOW FOR THE APP    
+''' 
 ''' </summary>
 ''' 
 
@@ -24,31 +25,31 @@ Public Class formMain
     Public sourceFileName, targetFileName As String
 
     'VARIABLES
-    Private ret As Integer
-    Private i, j, k As Integer
-    Private tolerance As Double
-    Private numDecimals As Integer
+    Private ret As Integer                                                                                           'O(1)
+    Private i, j, k As Integer                                                                                       'O(1)
+    Private tolerance As Double                                                                                      'O(1)
+    Private numDecimals As Integer                                                                                   'O(1)
     'ETABS OAPI Interoperability Variables
-    Private HelperObject As ETABSv1.cHelper   ' Helper Class Object Variable                         'O(1)
-    Private ETABSApp As ETABSv1.cOAPI         ' ETABS Application Object Variable                    'O(1)
-    Private sourceEtabsModel As ETABSv1.cSapModel  ' ETABS Model Object Variable                     'O(1)
-    Private targetEtabsModel As ETABSv1.cSapModel  ' Target ETABS Model Object Variable              'O(1)
+    Private HelperObject As ETABSv1.cHelper   ' Helper Class Object Variable                                         'O(1)
+    Private ETABSApp As ETABSv1.cOAPI         ' ETABS Application Object Variable                                    'O(1)
+    Private sourceEtabsModel As ETABSv1.cSapModel  ' ETABS Model Object Variable                                     'O(1)
+    Private targetEtabsModel As ETABSv1.cSapModel  ' Target ETABS Model Object Variable                              'O(1)
     'ETABS OAPI Utility Variables
-    Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumberStories, sourceNumberGroups As Integer
-    Dim targetLoadCasesNum, targetStoryNumNames, targetNumberStories, targetNumberGroups As Integer
-    Dim selLoadCasesNum, selStoryNumNames, selNumberStories, selNumberGroups As Integer
-    Dim sourceLoadCaseName, sourceStoryName As String
-    Dim targetLoadCaseName, targetStoryName As String
-    Dim selLoadCaseName, selStoryName As String
-    Dim sourceLoadCasesNames(), sourceStoryNames(), sourceGroupNames() As String
-    Dim targetLoadCasesNames(), targetStoryNames(), targetGroupNames() As String
-    Dim selLoadCasesNames(), selStoryNames(), selGroupNames() As String
-    Dim ReactPoints_GroupName As String
-    Const etabsVisibility As Boolean = False
+    Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumberStories, sourceNumberGroups As Integer                  'O(1)
+    Dim targetLoadCasesNum, targetStoryNumNames, targetNumberStories, targetNumberGroups As Integer                  'O(1)
+    Dim selLoadCasesNum, selStoryNumNames, selNumberStories, selNumberGroups As Integer                              'O(1)
+    Dim sourceLoadCaseName, sourceStoryName As String                                                                'O(1)
+    Dim targetLoadCaseName, targetStoryName As String                                                                'O(1)
+    Dim selLoadCaseName, selStoryName As String                                                                      'O(1)
+    Dim sourceLoadCasesNames(), sourceStoryNames(), sourceGroupNames() As String                                     'O(1)
+    Dim targetLoadCasesNames(), targetStoryNames(), targetGroupNames() As String                                     'O(1)
+    Dim selLoadCasesNames(), selStoryNames(), selGroupNames() As String                                              'O(1)
+    Dim ReactPoints_GroupName As String                                                                              'O(1)
+    Const etabsVisibility As Boolean = False                                                                         'O(1)
 
 
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitializeForm()
         InitializeETABS()
     End Sub
@@ -93,12 +94,12 @@ Public Class formMain
         'ETABS OAPI Variables Assignment
 
         'Helper Class Object Variable
-        HelperObject = New ETABSv1.Helper                                                            'O(1)
-        'ETABS Application Object Variable
-        ETABSApp = Nothing                                                                           'O(1)
-        ETABSApp = HelperObject.CreateObjectProgID("CSI.ETABS.API.ETABSObject")
-        'ETABSApp = HelperObject.CreateObject("c:\Program Files\Computers and Structures\ETABS 20\ETABS.exe")
-        'ETABSApp = HelperObject.GetObject("CSI.ETABS.API.ETABSObject")                              'O(1)
+        HelperObject = New ETABSv1.Helper                                                                            'O(1)
+        'ETABS Application Object Variable                                                                           'O(1)
+        ETABSApp = Nothing                                                                                           'O(1)
+        ETABSApp = HelperObject.CreateObjectProgID("CSI.ETABS.API.ETABSObject")                                      'O(1)
+        'ETABSApp = HelperObject.CreateObject("c:\Program Files\Computers and Structures\ETABS 20\ETABS.exe")        'O(1)
+        'ETABSApp = HelperObject.GetObject("CSI.ETABS.API.ETABSObject")                                              'O(1)
 
     End Sub
 
