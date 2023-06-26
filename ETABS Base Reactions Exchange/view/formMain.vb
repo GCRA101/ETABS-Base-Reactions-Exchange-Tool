@@ -21,7 +21,6 @@ Imports System.ComponentModel
 '''     - SORT + BINARY SEARCH FOR GROUPS SEARCHING
 '''     - REFACTOR ALL CODE CREATING SETS OF SUPER AND SUB CLASSES USING INHERITANCE
 '''       TO DEFINE ALL THEIR PARAMETERS CONTAINING ETABS OUTPUTS (NUMBER GROUPS, NUMBERSTORIES...)
-'''     - ADD SPLASHSCREEN AND FRONT WINDOW FOR THE APP    
 ''' 
 ''' </summary>
 ''' 
@@ -500,6 +499,7 @@ Public Class formMain
             Me.Refresh()
 
         Next
+
 
         Me.lblProgrBar.Text = "Transfer Completed!"
         Me.Refresh()
