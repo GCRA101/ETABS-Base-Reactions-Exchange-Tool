@@ -5,8 +5,8 @@ Imports System.Text.RegularExpressions
 Imports CSiAPIv1
 Imports ETABSv1
 
-Imports ETABS_Base_Reactions_Exchange.model.model
-Imports ETABS_Base_Reactions_Exchange.controller.controller
+Imports ETABS_Base_Reactions_Exchange.model.Model
+Imports ETABS_Base_Reactions_Exchange.controller.Controller
 Imports System.Threading
 Imports System.Net.Http.Headers
 Imports System.Net.Mime

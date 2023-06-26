@@ -88,6 +88,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\Observable.vb" />
+    <Compile Include="model\Observer.vb" />
     <Compile Include="view\AboutBox.Designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
     </Compile>
@@ -95,7 +97,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="controller\controller.vb" />
+    <Compile Include="controller\Controller.vb" />
     <Compile Include="model\JointData.vb" />
     <Compile Include="view\SplashScreen.Designer.vb">
       <DependentUpon>SplashScreen.vb</DependentUpon>
@@ -110,7 +112,7 @@
       <DependentUpon>formMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="model\model.vb" />
+    <Compile Include="model\Model.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -127,7 +129,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="view\view.vb" />
+    <Compile Include="view\View.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="view\AboutBox.resx">
