@@ -50,6 +50,9 @@
   <PropertyGroup>
     <ApplicationIcon>BREEtabsBHE.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSiAPIv1">
       <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 20\CSiAPIv1.dll</HintPath>
@@ -85,7 +88,21 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="view\AboutBox.Designer.vb">
+      <DependentUpon>AboutBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="view\AboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="controller\controller.vb" />
+    <Compile Include="model\JointData.vb" />
+    <Compile Include="view\SplashScreen.Designer.vb">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="view\SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="view\formMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +130,12 @@
     <Compile Include="view\view.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="view\AboutBox.resx">
+      <DependentUpon>AboutBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\SplashScreen.resx">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +147,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -138,6 +162,8 @@
   <ItemGroup>
     <Content Include="BREEtabsBHE.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="docs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -29,3 +29,5 @@ C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS 
 C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.exe
 C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.xml
 C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS Base Reactions Exchange.pdb
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS_Base_Reactions_Exchange.AboutBox.resources
+C:\Users\galbieri\OneDrive - Buro Happold\Structures\10_Computational\HOI\ETABS Base Reactions Exchange\ETABS Base Reactions Exchange\obj\Debug\ETABS_Base_Reactions_Exchange.SplashScreen.resources

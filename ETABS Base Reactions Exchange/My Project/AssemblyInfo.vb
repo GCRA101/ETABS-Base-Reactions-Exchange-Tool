@@ -1,4 +1,5 @@
-﻿Imports System
+﻿Imports System.Resources
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -9,8 +10,8 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("ETABS Base Reactions Exchange")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyDescription("Windows Desktop application developed in VB.Net. The app allows the user to select a source Etabs file from which to extract all the joint reactions corresponding to the levels and load cases selected by the user. The user then just needs to select the target Etabs file where to push all the base joints and their own reaction forces, with inverted sign as expected. The modified target model gets saved as a new file with an ad-hoc prefix based on the current date.")>
+<Assembly: AssemblyCompany("Buro Happold")>
 <Assembly: AssemblyProduct("ETABS Base Reactions Exchange")>
 <Assembly: AssemblyCopyright("Copyright ©  2023")>
 <Assembly: AssemblyTrademark("")>
@@ -33,3 +34,4 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("1.0.0.0")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: NeutralResourcesLanguage("")>

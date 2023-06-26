@@ -3,6 +3,11 @@ Imports System.Runtime.CompilerServices
 Imports System.Security.Cryptography.X509Certificates
 Imports System.Text.RegularExpressions
 Imports CSiAPIv1
+Imports ETABSv1
+
+Imports ETABS_Base_Reactions_Exchange.model.model
+Imports ETABS_Base_Reactions_Exchange.controller.controller
+Imports System.Threading
 
 ''' <summary>
 ''' IMPORTANT NOTES
@@ -47,23 +52,32 @@ Public Class formMain
     Dim ReactPoints_GroupName As String                                                                              'O(1)
     Const etabsVisibility As Boolean = False                                                                         'O(1)
 
+    Dim xCoord, yCoord As Integer
 
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        SplashScreen.ShowDialog()
+        AboutBox.ShowDialog()
         InitializeForm()
         InitializeETABS()
     End Sub
 
 
+    Private Sub setFormLocation()
+        xCoord = Screen.PrimaryScreen.Bounds.Width / 2 - Me.Width / 2
+        yCoord = Screen.PrimaryScreen.Bounds.Height / 2 - Me.Height / 2
+        Me.SetDesktopLocation(xCoord, yCoord)
+    End Sub
 
     Private Sub btnTransferReactions_Click(sender As Object, e As EventArgs) Handles btnTransferReactions.Click
-        numDecimals = CDbl(Me.cbTolerances.SelectedItem.ToString.Split(".")(1).Length)
+        numDecimals = CDbl(cbTolerances.SelectedItem.ToString.Split(".")(1).Length)
         runTransfer()
     End Sub
 
     Private Sub lbTolerance_SelectedIndexChanged(sender As Object, e As EventArgs)
         tolerance = CDbl(Me.cbTolerances.SelectedItem)
     End Sub
+
 
     Private Sub btnOpenSourceFile_Click(sender As Object, e As EventArgs) Handles btnOpenSourceFile.Click
 
@@ -114,6 +128,8 @@ Public Class formMain
         Me.cbTolerances.SelectedItem = Me.cbTolerances.Items(2)
         Me.btnOpenTargetFile.Enabled = False
         Me.btnTransferReactions.Enabled = False
+
+        Me.setFormLocation()
 
     End Sub
 
@@ -263,11 +279,11 @@ Public Class formMain
                     'Select the Objects belonging to the Group
                     ret = .SelectObj.Group(ReactPoints_GroupName, False)
                     'Area Objects - Group Assignment Removal
-                    ret = .AreaObj.SetGroupAssign("", ReactPoints_GroupName, True, eItemType.SelectedObjects)
+                    ret = .AreaObj.SetGroupAssign("", ReactPoints_GroupName, True, ETABSv1.eItemType.SelectedObjects)
                     'Frame Objects - Group Assignment Removal
-                    ret = .FrameObj.SetGroupAssign("", ReactPoints_GroupName, True, eItemType.SelectedObjects)
+                    ret = .FrameObj.SetGroupAssign("", ReactPoints_GroupName, True, ETABSv1.eItemType.SelectedObjects)
                     'Point Objects - Group Assignment Removal
-                    ret = .PointObj.SetGroupAssign("", ReactPoints_GroupName, True, eItemType.SelectedObjects)
+                    ret = .PointObj.SetGroupAssign("", ReactPoints_GroupName, True, ETABSv1.eItemType.SelectedObjects)
                 End With
             End If
         Else
@@ -329,7 +345,7 @@ Public Class formMain
 
 
 
-        Dim baseJointsData As JointData()
+        Dim baseJointsData As model.JointData()
 
         Dim Name As String
         Dim ItemTypeElm As ETABSv1.eItemTypeElm
@@ -395,7 +411,7 @@ Public Class formMain
                                              StepType, StepNum, F1, F2, F3, M1, M2, M3)
             ret = sourceEtabsModel.PointObj.GetCoordCartesian(ppNames(i), ppX, ppY, ppZ)
 
-            baseJointsData(i) = New JointData()
+            baseJointsData(i) = New model.JointData()
 
             With baseJointsData(i)
                 .setName(ppNames(i))
@@ -436,12 +452,12 @@ Public Class formMain
 
         For Each selStoryName In selStoryNames
             ret = targetEtabsModel.PointObj.GetNameListOnStory(selStoryName, ppNumberNames, ppNames)
-            targetPPNamesByStoryList.Add(ppNames)
+            targetppNamesByStoryList.Add(ppNames)
         Next
 
 
 
-        For Each bjd As JointData In baseJointsData
+        For Each bjd As model.JointData In baseJointsData
             For Each dataRow As String() In targetppNamesByStoryList
                 For i = 0 To dataRow.Count - 1 Step 1
 
@@ -459,7 +475,7 @@ Public Class formMain
                             Dim pointForces() As Double = {bjd.getF1(j) * (-1), bjd.getF2(j) * (-1), bjd.getF3(j) * (-1),
                                                            bjd.getM1(j) * (-1), bjd.getM2(j) * (-1), bjd.getM3(j) * (-1)}
                             ret = targetEtabsModel.PointObj.SetLoadForce(dataRow(i), bjd.getLoadCases()(j), pointForces, True)
-                            ret = targetEtabsModel.PointObj.SetGroupAssign(dataRow(i), ReactPoints_GroupName, False, eItemType.Objects)
+                            ret = targetEtabsModel.PointObj.SetGroupAssign(dataRow(i), ReactPoints_GroupName, False, ETABSv1.eItemType.Objects)
                         Next
                         Exit For
                     End If
@@ -472,7 +488,7 @@ Public Class formMain
                         Dim pointForces() As Double = {bjd.getF1(k) * (-1), bjd.getF2(k) * (-1), bjd.getF3(k) * (-1),
                                                        bjd.getM1(k) * (-1), bjd.getM2(k) * (-1), bjd.getM3(k) * (-1)}
                         ret = targetEtabsModel.PointObj.SetLoadForce(ppNewName, bjd.getLoadCases(k), pointForces, True)
-                        ret = targetEtabsModel.PointObj.SetGroupAssign(ppNewName, ReactPoints_GroupName, False, eItemType.Objects)
+                        ret = targetEtabsModel.PointObj.SetGroupAssign(ppNewName, ReactPoints_GroupName, False, ETABSv1.eItemType.Objects)
                     Next
                 End If
             Next
@@ -498,144 +514,6 @@ Public Class formMain
 
 End Class
 
-
-
-
-Public Class JointData
-
-    'ATTRIBUTES
-    Private Property Name As String
-    Private Property ItemTypeElm As ETABSv1.eItemTypeElm
-    Private Property NumberResults As Integer
-    Private Property Obj As String()
-    Private Property Elm As String()
-    Private Property LoadCase As String()
-    Private Property StepType As String()
-    Private Property StepNum As Double()
-    Private Property x As Double
-    Private Property y As Double
-    Private Property z As Double
-    Private Property F1 As Double()
-    Private Property F2 As Double()
-    Private Property F3 As Double()
-    Private Property M1 As Double()
-    Private Property M2 As Double()
-    Private Property M3 As Double()
-
-
-    'CONSTRUCTOR
-    'Default Constructor applies
-
-
-    'GETTERS AND SETTERS
-
-    'Setters
-    Public Sub setName(Name As String)
-        Me.Name = Name
-    End Sub
-    Public Sub setItemTypeElm(itemTypeElm As ETABSv1.eItemTypeElm)
-        Me.ItemTypeElm = itemTypeElm
-    End Sub
-    Public Sub setNumberResults(NumberResults As Integer)
-        Me.NumberResults = NumberResults
-    End Sub
-    Public Sub setObj(Obj As String())
-        Me.Obj = Obj
-    End Sub
-    Public Sub setElm(Elm As String())
-        Me.Elm = Elm
-    End Sub
-    Public Sub setLoadCases(LoadCase As String())
-        Me.LoadCase = LoadCase
-    End Sub
-    Public Sub setStepType(StepType As String())
-        Me.StepType = StepType
-    End Sub
-    Public Sub setStepNum(StepNum As Double())
-        Me.StepNum = StepNum
-    End Sub
-    Public Sub setX(x As Double)
-        Me.x = x
-    End Sub
-    Public Sub setY(y As Double)
-        Me.y = y
-    End Sub
-    Public Sub setZ(z As Double)
-        Me.z = z
-    End Sub
-    Public Sub setF1(F1 As Double())
-        Me.F1 = F1
-    End Sub
-    Public Sub setF2(F2 As Double())
-        Me.F2 = F2
-    End Sub
-    Public Sub setF3(F3 As Double())
-        Me.F3 = F3
-    End Sub
-    Public Sub setM1(M1 As Double())
-        Me.M1 = M1
-    End Sub
-    Public Sub setM2(M2 As Double())
-        Me.M2 = M2
-    End Sub
-    Public Sub setM3(M3 As Double())
-        Me.M3 = M3
-    End Sub
-
-    'Getters
-    Public Function getName() As String
-        Return Me.Name
-    End Function
-    Public Function getItemTypeElm() As ETABSv1.eItemTypeElm
-        Return Me.ItemTypeElm
-    End Function
-    Public Function getNumberResults() As Integer
-        Return Me.NumberResults
-    End Function
-    Public Function getObj() As String()
-        Return Me.Obj
-    End Function
-    Public Function getElm() As String()
-        Return Me.Elm
-    End Function
-    Public Function getLoadCases() As String()
-        Return Me.LoadCase
-    End Function
-    Public Function getStepType() As String()
-        Return Me.StepType
-    End Function
-    Public Function getStepNum() As Double()
-        Return Me.StepNum
-    End Function
-    Public Function getX() As Double
-        Return Me.x
-    End Function
-    Public Function getY() As Double
-        Return Me.y
-    End Function
-    Public Function getZ() As Double
-        Return Me.z
-    End Function
-    Public Function getF1() As Double()
-        Return Me.F1
-    End Function
-    Public Function getF2() As Double()
-        Return Me.F2
-    End Function
-    Public Function getF3() As Double()
-        Return Me.F3
-    End Function
-    Public Function getM1() As Double()
-        Return Me.M1
-    End Function
-    Public Function getM2() As Double()
-        Return Me.M2
-    End Function
-    Public Function getM3() As Double()
-        Return Me.M3
-    End Function
-
-End Class
 
 
 

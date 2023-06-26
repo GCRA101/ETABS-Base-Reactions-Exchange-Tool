@@ -49,20 +49,18 @@ Partial Class formMain
         '
         'btnOpenSourceFile
         '
-        Me.btnOpenSourceFile.Location = New System.Drawing.Point(45, 49)
-        Me.btnOpenSourceFile.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnOpenSourceFile.Location = New System.Drawing.Point(34, 40)
         Me.btnOpenSourceFile.Name = "btnOpenSourceFile"
-        Me.btnOpenSourceFile.Size = New System.Drawing.Size(165, 41)
+        Me.btnOpenSourceFile.Size = New System.Drawing.Size(124, 33)
         Me.btnOpenSourceFile.TabIndex = 0
         Me.btnOpenSourceFile.Text = "ETABS Source File"
         Me.btnOpenSourceFile.UseVisualStyleBackColor = True
         '
         'btnOpenTargetFile
         '
-        Me.btnOpenTargetFile.Location = New System.Drawing.Point(225, 49)
-        Me.btnOpenTargetFile.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnOpenTargetFile.Location = New System.Drawing.Point(169, 40)
         Me.btnOpenTargetFile.Name = "btnOpenTargetFile"
-        Me.btnOpenTargetFile.Size = New System.Drawing.Size(165, 41)
+        Me.btnOpenTargetFile.Size = New System.Drawing.Size(124, 33)
         Me.btnOpenTargetFile.TabIndex = 1
         Me.btnOpenTargetFile.Text = "ETABS Target File"
         Me.btnOpenTargetFile.UseVisualStyleBackColor = True
@@ -70,29 +68,26 @@ Partial Class formMain
         'cklbLoadCases
         '
         Me.cklbLoadCases.FormattingEnabled = True
-        Me.cklbLoadCases.Location = New System.Drawing.Point(45, 388)
-        Me.cklbLoadCases.Margin = New System.Windows.Forms.Padding(4)
+        Me.cklbLoadCases.Location = New System.Drawing.Point(34, 315)
         Me.cklbLoadCases.Name = "cklbLoadCases"
-        Me.cklbLoadCases.Size = New System.Drawing.Size(345, 123)
+        Me.cklbLoadCases.Size = New System.Drawing.Size(260, 94)
         Me.cklbLoadCases.TabIndex = 2
         '
         'lblLoadCases
         '
         Me.lblLoadCases.AutoSize = True
         Me.lblLoadCases.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lblLoadCases.Location = New System.Drawing.Point(42, 361)
-        Me.lblLoadCases.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLoadCases.Location = New System.Drawing.Point(32, 293)
         Me.lblLoadCases.Name = "lblLoadCases"
-        Me.lblLoadCases.Size = New System.Drawing.Size(98, 20)
+        Me.lblLoadCases.Size = New System.Drawing.Size(77, 15)
         Me.lblLoadCases.TabIndex = 4
         Me.lblLoadCases.Text = "LOAD CASES"
         '
         'btnTransferReactions
         '
-        Me.btnTransferReactions.Location = New System.Drawing.Point(124, 584)
-        Me.btnTransferReactions.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnTransferReactions.Location = New System.Drawing.Point(93, 474)
         Me.btnTransferReactions.Name = "btnTransferReactions"
-        Me.btnTransferReactions.Size = New System.Drawing.Size(192, 47)
+        Me.btnTransferReactions.Size = New System.Drawing.Size(144, 38)
         Me.btnTransferReactions.TabIndex = 6
         Me.btnTransferReactions.Text = "TRANSFER REACTIONS"
         Me.btnTransferReactions.UseVisualStyleBackColor = True
@@ -100,29 +95,28 @@ Partial Class formMain
         'cklbStories
         '
         Me.cklbStories.FormattingEnabled = True
-        Me.cklbStories.Location = New System.Drawing.Point(45, 137)
-        Me.cklbStories.Margin = New System.Windows.Forms.Padding(4)
+        Me.cklbStories.Location = New System.Drawing.Point(34, 111)
         Me.cklbStories.Name = "cklbStories"
-        Me.cklbStories.Size = New System.Drawing.Size(345, 89)
+        Me.cklbStories.Size = New System.Drawing.Size(260, 64)
         Me.cklbStories.TabIndex = 7
         '
         'lblStories
         '
         Me.lblStories.AutoSize = True
         Me.lblStories.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStories.Location = New System.Drawing.Point(43, 113)
-        Me.lblStories.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblStories.Location = New System.Drawing.Point(32, 92)
         Me.lblStories.Name = "lblStories"
-        Me.lblStories.Size = New System.Drawing.Size(71, 20)
+        Me.lblStories.Size = New System.Drawing.Size(58, 15)
         Me.lblStories.TabIndex = 8
         Me.lblStories.Text = "STOREYS"
         '
         'lblTolerance
         '
         Me.lblTolerance.AutoSize = True
-        Me.lblTolerance.Location = New System.Drawing.Point(49, 538)
+        Me.lblTolerance.Location = New System.Drawing.Point(37, 437)
+        Me.lblTolerance.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTolerance.Name = "lblTolerance"
-        Me.lblTolerance.Size = New System.Drawing.Size(161, 16)
+        Me.lblTolerance.Size = New System.Drawing.Size(129, 13)
         Me.lblTolerance.TabIndex = 9
         Me.lblTolerance.Text = "Joints Location Tolerance"
         '
@@ -130,45 +124,45 @@ Partial Class formMain
         '
         Me.cbTolerances.FormattingEnabled = True
         Me.cbTolerances.Items.AddRange(New Object() {"0.1", "0.01", "0.001", "0.0001", "0.00001", "0.000001", "0.00000001"})
-        Me.cbTolerances.Location = New System.Drawing.Point(216, 535)
+        Me.cbTolerances.Location = New System.Drawing.Point(162, 435)
+        Me.cbTolerances.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cbTolerances.Name = "cbTolerances"
-        Me.cbTolerances.Size = New System.Drawing.Size(143, 24)
+        Me.cbTolerances.Size = New System.Drawing.Size(108, 21)
         Me.cbTolerances.TabIndex = 11
         '
         'lblTolUnits
         '
         Me.lblTolUnits.AutoSize = True
-        Me.lblTolUnits.Location = New System.Drawing.Point(365, 538)
+        Me.lblTolUnits.Location = New System.Drawing.Point(274, 437)
+        Me.lblTolUnits.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblTolUnits.Name = "lblTolUnits"
-        Me.lblTolUnits.Size = New System.Drawing.Size(26, 16)
+        Me.lblTolUnits.Size = New System.Drawing.Size(21, 13)
         Me.lblTolUnits.TabIndex = 12
         Me.lblTolUnits.Text = "[m]"
         '
         'cklbGroups
         '
         Me.cklbGroups.FormattingEnabled = True
-        Me.cklbGroups.Location = New System.Drawing.Point(45, 268)
-        Me.cklbGroups.Margin = New System.Windows.Forms.Padding(4)
+        Me.cklbGroups.Location = New System.Drawing.Point(34, 218)
         Me.cklbGroups.Name = "cklbGroups"
-        Me.cklbGroups.Size = New System.Drawing.Size(345, 89)
+        Me.cklbGroups.Size = New System.Drawing.Size(260, 64)
         Me.cklbGroups.TabIndex = 13
         '
         'lblGroups
         '
         Me.lblGroups.AutoSize = True
         Me.lblGroups.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lblGroups.Location = New System.Drawing.Point(41, 239)
-        Me.lblGroups.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblGroups.Location = New System.Drawing.Point(31, 194)
         Me.lblGroups.Name = "lblGroups"
-        Me.lblGroups.Size = New System.Drawing.Size(69, 20)
+        Me.lblGroups.Size = New System.Drawing.Size(56, 15)
         Me.lblGroups.TabIndex = 14
         Me.lblGroups.Text = "GROUPS"
         '
         'formMain
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(429, 664)
+        Me.ClientSize = New System.Drawing.Size(322, 540)
         Me.Controls.Add(Me.lblGroups)
         Me.Controls.Add(Me.cklbGroups)
         Me.Controls.Add(Me.lblTolUnits)
@@ -182,7 +176,6 @@ Partial Class formMain
         Me.Controls.Add(Me.btnOpenTargetFile)
         Me.Controls.Add(Me.btnOpenSourceFile)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "formMain"
         Me.Text = "ETABS Reactions Transfer"
         Me.ResumeLayout(False)

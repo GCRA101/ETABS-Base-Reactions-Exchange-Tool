@@ -1,0 +1,18 @@
+Features
+- Windows Form allowing the user to select the following items:
+	- Source and Target Etabs models
+	- Levels from which to take the reaction joints
+	- Groups from which to take the reaction joints
+	- Load Cases of the joint reactions
+- Transfer of base joint reactions from one Etabs Source Model to Etabs Target Model 
+  based on the criteria set out in the Form.
+- Target Etabs Model with imported joint reactions is saved in the same folder of the original 
+  with an additional prefix at the beginning showing the current date.
+  
+Limitations:
+- Levels shared by Source and Target Model must have the same name.
+- No Automatic Meshing is allowed for walls in the Source Model
+	- Wall base point reactions at mesh points not coinciding 
+	  with shell corner points will be neglected.
+	- Switch off Walls Automatic Meshing in the Source Model 
+	  prior to using this application
