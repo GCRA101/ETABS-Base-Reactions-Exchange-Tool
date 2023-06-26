@@ -32,10 +32,18 @@
     End Sub
 
 
+    Private Sub AboutBox_Closing(sender As Object, e As EventArgs) Handles Me.Closed
+        If Me.Visible = True Then
+            End
+        End If
+    End Sub
+
+
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         Me.Close()
         Me.Dispose()
         formMain.Visible = True
     End Sub
+
 
 End Class
