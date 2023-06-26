@@ -37,6 +37,8 @@ Partial Class formMain
         Me.lblTolUnits = New System.Windows.Forms.Label()
         Me.cklbGroups = New System.Windows.Forms.CheckedListBox()
         Me.lblGroups = New System.Windows.Forms.Label()
+        Me.progrBar = New System.Windows.Forms.ProgressBar()
+        Me.lblProgrBar = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ofdEtabsSourceFile
@@ -125,7 +127,7 @@ Partial Class formMain
         Me.cbTolerances.FormattingEnabled = True
         Me.cbTolerances.Items.AddRange(New Object() {"0.1", "0.01", "0.001", "0.0001", "0.00001", "0.000001", "0.00000001"})
         Me.cbTolerances.Location = New System.Drawing.Point(162, 435)
-        Me.cbTolerances.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cbTolerances.Margin = New System.Windows.Forms.Padding(2)
         Me.cbTolerances.Name = "cbTolerances"
         Me.cbTolerances.Size = New System.Drawing.Size(108, 21)
         Me.cbTolerances.TabIndex = 11
@@ -158,11 +160,31 @@ Partial Class formMain
         Me.lblGroups.TabIndex = 14
         Me.lblGroups.Text = "GROUPS"
         '
+        'progrBar
+        '
+        Me.progrBar.Location = New System.Drawing.Point(33, 544)
+        Me.progrBar.Maximum = 100000
+        Me.progrBar.Name = "progrBar"
+        Me.progrBar.Size = New System.Drawing.Size(260, 22)
+        Me.progrBar.TabIndex = 16
+        '
+        'lblProgrBar
+        '
+        Me.lblProgrBar.AutoSize = True
+        Me.lblProgrBar.Location = New System.Drawing.Point(31, 528)
+        Me.lblProgrBar.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblProgrBar.Name = "lblProgrBar"
+        Me.lblProgrBar.Size = New System.Drawing.Size(110, 13)
+        Me.lblProgrBar.TabIndex = 18
+        Me.lblProgrBar.Text = "Transfer in Progress..."
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(322, 540)
+        Me.ClientSize = New System.Drawing.Size(322, 587)
+        Me.Controls.Add(Me.lblProgrBar)
+        Me.Controls.Add(Me.progrBar)
         Me.Controls.Add(Me.lblGroups)
         Me.Controls.Add(Me.cklbGroups)
         Me.Controls.Add(Me.lblTolUnits)
@@ -197,4 +219,6 @@ Partial Class formMain
     Friend WithEvents lblTolUnits As Label
     Friend WithEvents cklbGroups As CheckedListBox
     Friend WithEvents lblGroups As Label
+    Friend WithEvents progrBar As ProgressBar
+    Friend WithEvents lblProgrBar As Label
 End Class

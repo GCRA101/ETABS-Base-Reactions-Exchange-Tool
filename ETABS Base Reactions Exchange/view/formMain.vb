@@ -8,6 +8,9 @@ Imports ETABSv1
 Imports ETABS_Base_Reactions_Exchange.model.model
 Imports ETABS_Base_Reactions_Exchange.controller.controller
 Imports System.Threading
+Imports System.Net.Http.Headers
+Imports System.Net.Mime
+Imports System.ComponentModel
 
 ''' <summary>
 ''' IMPORTANT NOTES
@@ -70,6 +73,9 @@ Public Class formMain
     End Sub
 
     Private Sub btnTransferReactions_Click(sender As Object, e As EventArgs) Handles btnTransferReactions.Click
+        Me.lblProgrBar.Text = "Transfer in Progress..."
+        Me.lblProgrBar.Visible = True
+        Me.Refresh()
         numDecimals = CDbl(cbTolerances.SelectedItem.ToString.Split(".")(1).Length)
         runTransfer()
     End Sub
@@ -117,9 +123,6 @@ Public Class formMain
 
     End Sub
 
-    Private Sub lblGroups_Click(sender As Object, e As EventArgs) Handles lblGroups.Click
-
-    End Sub
 
     Private Sub InitializeForm()
 
@@ -128,7 +131,7 @@ Public Class formMain
         Me.cbTolerances.SelectedItem = Me.cbTolerances.Items(2)
         Me.btnOpenTargetFile.Enabled = False
         Me.btnTransferReactions.Enabled = False
-
+        Me.lblProgrBar.Visible = False
         Me.setFormLocation()
 
     End Sub
@@ -455,7 +458,7 @@ Public Class formMain
             targetppNamesByStoryList.Add(ppNames)
         Next
 
-
+        Dim progrBarStep As Integer = (Me.progrBar.Maximum - Me.progrBar.Minimum) \ baseJointsData.Count
 
         For Each bjd As model.JointData In baseJointsData
             For Each dataRow As String() In targetppNamesByStoryList
@@ -492,7 +495,14 @@ Public Class formMain
                     Next
                 End If
             Next
+
+            Me.progrBar.Increment(progrBarStep)
+            Me.Refresh()
+
         Next
+
+        Me.lblProgrBar.Text = "Transfer Completed!"
+        Me.Refresh()
 
 
         'SAVE THE MODEL
