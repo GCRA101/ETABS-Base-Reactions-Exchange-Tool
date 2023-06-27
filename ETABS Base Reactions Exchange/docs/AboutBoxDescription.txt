@@ -10,6 +10,7 @@ Features
   with an additional prefix at the beginning showing the current date.
   
 Limitations:
+- Any ETABS running instance has to be terminated before running this app.
 - Levels shared by Source and Target Model must have the same name.
 - No Automatic Meshing is allowed for walls in the Source Model
 	- Wall base point reactions at mesh points not coinciding 
