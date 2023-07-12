@@ -26,9 +26,6 @@
         yCoord = Screen.PrimaryScreen.Bounds.Height / 2 - Me.Height / 2
 
         Me.SetDesktopLocation(xCoord, yCoord)
-
-
-
     End Sub
 
 

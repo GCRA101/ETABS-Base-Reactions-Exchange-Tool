@@ -14,7 +14,6 @@ Imports System.ComponentModel
 
 ''' <summary>
 ''' IMPORTANT NOTES
-'''     - MATCHING LEVELS MUST HAVE THE SAME NAME IN THE TWO MODELS
 '''     - LOAD PATTERNS MUST MATCH LOAD CASES IN THE TWO MODELS
 '''     - REMOVE ALL GLOBAL VARIABLES JUST BY USING PROPER DESIGN PATTERNS
 '''     - ADD FUNCTION CLOSING ALL CURRENTLY OPEN ETABS INSTANCES
@@ -29,18 +28,13 @@ Imports System.ComponentModel
 
 Public Class formMain
 
-    Public sourceFileName, targetFileName As String
+
 
     'VARIABLES
-    Private ret As Integer                                                                                           'O(1)
     Private i, j, k As Integer                                                                                       'O(1)
     Private tolerance As Double                                                                                      'O(1)
     Private numDecimals As Integer                                                                                   'O(1)
-    'ETABS OAPI Interoperability Variables
-    Private HelperObject As ETABSv1.cHelper   ' Helper Class Object Variable                                         'O(1)
-    Private ETABSApp As ETABSv1.cOAPI         ' ETABS Application Object Variable                                    'O(1)
-    Private sourceEtabsModel As ETABSv1.cSapModel  ' ETABS Model Object Variable                                     'O(1)
-    Private targetEtabsModel As ETABSv1.cSapModel  ' Target ETABS Model Object Variable                              'O(1)
+
     'ETABS OAPI Utility Variables
     Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumberStories, sourceNumberGroups As Integer                  'O(1)
     Dim targetLoadCasesNum, targetStoryNumNames, targetNumberStories, targetNumberGroups As Integer                  'O(1)
@@ -108,19 +102,7 @@ Public Class formMain
 
 
 
-    Private Sub InitializeETABS()
 
-        'ETABS OAPI Variables Assignment
-
-        'Helper Class Object Variable
-        HelperObject = New ETABSv1.Helper                                                                            'O(1)
-        'ETABS Application Object Variable                                                                           'O(1)
-        ETABSApp = Nothing                                                                                           'O(1)
-        ETABSApp = HelperObject.CreateObjectProgID("CSI.ETABS.API.ETABSObject")                                      'O(1)
-        'ETABSApp = HelperObject.CreateObject("c:\Program Files\Computers and Structures\ETABS 20\ETABS.exe")        'O(1)
-        'ETABSApp = HelperObject.GetObject("CSI.ETABS.API.ETABSObject")                                              'O(1)
-
-    End Sub
 
 
     Private Sub InitializeForm()
@@ -133,12 +115,6 @@ Public Class formMain
         Me.lblProgrBar.Visible = False
         Me.setFormLocation()
 
-    End Sub
-
-    Private Sub setEtabsVisibility()
-        If Not etabsVisibility Then
-            ret = ETABSApp.Hide()
-        End If
     End Sub
 
 
@@ -162,21 +138,6 @@ Public Class formMain
     End Function
 
 
-    Private Function setNewFilePath(filePath As String) As String
-        Dim newFilePath As String
-        Dim dateObj As Date = Date.Today
-
-        Dim sep() As Char = {"/", "\", "//"}
-
-        With dateObj
-            newFilePath = filePath.Remove(filePath.IndexOf(filePath.Split(sep).Last())) + "BRE" +
-                            .Year.ToString + .Month.ToString("D2") +
-                            .Day.ToString("D2") + "_" + filePath.Split(sep).Last()
-        End With
-
-        Return newFilePath
-
-    End Function
 
 
     Private Sub extractDataSourceFile()
@@ -504,21 +465,12 @@ Public Class formMain
         Me.lblProgrBar.Text = "Transfer Completed!"
         Me.Refresh()
 
-
-        'SAVE THE MODEL
         targetEtabsModel.File.Save(setNewFilePath(targetFileName))
-
-        'CLOSE ETABS APPLICATION
-        ETABSApp.ApplicationExit(False)
-
-        'MEMORY RELEASE
-        sourceEtabsModel = Nothing                                                               'O(1)
-        targetEtabsModel = Nothing
-        ETABSApp = Nothing                                                                       'O(1)
 
         'CLOSE AND DISPOSE FORM
         Me.Close()
         Me.Dispose()
+
 
     End Sub
 
