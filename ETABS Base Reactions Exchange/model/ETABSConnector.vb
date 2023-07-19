@@ -23,7 +23,7 @@ Public Class ETABSConnector
     Private Shared instance As ETABSConnector
 
     'ETABS OAPI Interoperability Variables
-    Private HelperObject As ETABSv1.cHelper   ' Helper Class Object Variable                  'O(1)
+    Private helperObject As ETABSv1.cHelper   ' Helper Class Object Variable                  'O(1)
     Private ETABSApp As ETABSv1.cOAPI         ' ETABS Application Object Variable             'O(1)
     Private sourceEtabsModel As ETABSv1.cSapModel  ' ETABS Model Object Variable              'O(1)
     Private targetEtabsModel As ETABSv1.cSapModel  ' Target ETABS Model Object Variable       'O(1)
@@ -56,21 +56,21 @@ Public Class ETABSConnector
 
 
     'INITIALIZEETABS() METHOD
-    Public Sub initializeETABS()
+    Public Sub initialize()
 
         'Helper Class Object Variable
-        HelperObject = New ETABSv1.Helper                                                                            'O(1)
+        helperObject = New ETABSv1.Helper                                                                            'O(1)
         'ETABS Application Object Variable                                                                           'O(1)
         ETABSApp = Nothing                                                                                           'O(1)
-        ETABSApp = HelperObject.CreateObjectProgID("CSI.ETABS.API.ETABSObject")                                      'O(1)
-        'ETABSApp = HelperObject.CreateObject("c:\Program Files\Computers and Structures\ETABS 20\ETABS.exe")        'O(1)
-        'ETABSApp = HelperObject.GetObject("CSI.ETABS.API.ETABSObject")                                              'O(1)
+        ETABSApp = helperObject.CreateObjectProgID("CSI.ETABS.API.ETABSObject")                                      'O(1)
+        'ETABSApp = helperObject.CreateObject("c:\Program Files\Computers and Structures\ETABS 20\ETABS.exe")        'O(1)
+        'ETABSApp = helperObject.GetObject("CSI.ETABS.API.ETABSObject")                                              'O(1)
 
     End Sub
 
 
     ' DISPOSEETABS() METHOD
-    Public Sub disposeETABS()
+    Public Sub dispose()
 
         'Save the Model
         targetEtabsModel.File.Save(setNewFilePath(targetFileName))

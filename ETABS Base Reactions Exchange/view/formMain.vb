@@ -46,7 +46,7 @@ Public Class formMain
     Dim targetLoadCasesNames(), targetStoryNames(), targetGroupNames() As String                                     'O(1)
     Dim selLoadCasesNames(), selStoryNames(), selGroupNames() As String                                              'O(1)
     Dim ReactPoints_GroupName As String                                                                              'O(1)
-    Const etabsVisibility As Boolean = False                                                                         'O(1)
+
 
     Dim xCoord, yCoord As Integer
 

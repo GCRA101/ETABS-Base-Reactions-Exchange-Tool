@@ -88,8 +88,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\ETABSConnector.vb" />
     <Compile Include="model\Observable.vb" />
     <Compile Include="model\Observer.vb" />
+    <Compile Include="model\PointReactions.vb" />
     <Compile Include="view\AboutBox.Designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
     </Compile>
