@@ -186,7 +186,7 @@ Public Class formMain
         ret = ETABSApp.ApplicationStart()
 
         'Show/Hide ETABS Application
-        setEtabsVisibility()
+        'setEtabsVisibility()
 
 
         ''ETABS Model Object Variable

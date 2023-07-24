@@ -1,2 +1,3 @@
-*.vsidx
-*.pdb
+*.vsidx*
+*.pdb*
+*.exe*
