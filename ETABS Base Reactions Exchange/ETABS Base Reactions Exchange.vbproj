@@ -91,6 +91,8 @@
     <Compile Include="model\ETABSConnector.vb" />
     <Compile Include="model\Observable.vb" />
     <Compile Include="model\Observer.vb" />
+    <Compile Include="model\PointDataSet.vb" />
+    <Compile Include="model\PointObj.vb" />
     <Compile Include="model\PointReactions.vb" />
     <Compile Include="view\AboutBox.Designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
@@ -100,7 +102,6 @@
     </Compile>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="controller\Controller.vb" />
-    <Compile Include="model\JointData.vb" />
     <Compile Include="view\SplashScreen.Designer.vb">
       <DependentUpon>SplashScreen.vb</DependentUpon>
     </Compile>
