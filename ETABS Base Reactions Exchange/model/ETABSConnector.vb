@@ -67,4 +67,12 @@ Public MustInherit Class ETABSConnector
     End Sub
 
 
+    'Getters
+
+    'GET ETABS APP
+    Public Function getEtabsApp()
+        Return Me.ETABSApp
+    End Function
+
+
 End Class
