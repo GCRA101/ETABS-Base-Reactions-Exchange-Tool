@@ -15,26 +15,36 @@ Imports System.ComponentModel
 
 
 
-Public MustInherit Class ETABSConnector
+Public Class ETABSConnector
     Implements ETABSConnection
 
     'ATTRIBUTES ***********************************************************************************'
 
+    'Private Instance - SINGLETON PATTERN
+    Private Shared instance As ETABSConnector
     'ETABS OAPI Interoperability Variables
     Private helperObject As ETABSv1.cHelper   ' Helper Class Object Variable                  'O(1)
     Private ETABSApp As ETABSv1.cOAPI         ' ETABS Application Object Variable             'O(1)
-
     'Utility Variables
     Private ret As Integer                                                                    'O(1)
     Const etabsVisibility As Boolean = False                                                  'O(1)
 
 
-    'CONSTRUCTOR **********************************************************************************'
-    Public Sub New()
+    'PRIVATE CONSTRUCTOR **********************************************************************************'
+    Private Sub New()
     End Sub
 
 
     'METHODS **************************************************************************************'
+
+    'GETINSTANCE() METHOD - SINGLETON PATTERN
+    Public Shared Function getInstance() As ETABSConnector
+        If instance Is Nothing Then
+            instance = New ETABSConnector()
+        End If
+        Return instance
+    End Function
+
 
     'INITIALIZEETABS() METHOD
     Public Sub initialize() Implements ETABSConnection.initialize
