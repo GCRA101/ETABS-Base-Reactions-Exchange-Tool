@@ -37,7 +37,7 @@ Public MustInherit Class ETABSConnector
     'METHODS **************************************************************************************'
 
     'INITIALIZEETABS() METHOD
-    Public Sub initialize()
+    Public Sub initialize() Implements ETABSConnection.initialize
         'Helper Class Object Variable
         helperObject = New ETABSv1.Helper                                                                            'O(1)
         'ETABS Application Object Variable                                                                           'O(1)
@@ -49,7 +49,7 @@ Public MustInherit Class ETABSConnector
 
 
     ' DISPOSEETABS() METHOD
-    Public Sub dispose()
+    Public Sub dispose() Implements ETABSConnection.dispose
         'Close the ETABS Application
         ETABSApp.ApplicationExit(False) 'O(1)
         'Release Memory
@@ -58,7 +58,7 @@ Public MustInherit Class ETABSConnector
 
 
     ' SETETABSVISIBILITY() METHOD
-    Private Sub setEtabsVisibility(bool As Boolean)
+    Private Sub setEtabsVisibility(bool As Boolean) Implements ETABSConnection.setETABSVisibility
         If bool = False Then
             ret = ETABSApp.Hide()
         Else
