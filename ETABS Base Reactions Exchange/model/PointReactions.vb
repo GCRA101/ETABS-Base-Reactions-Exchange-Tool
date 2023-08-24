@@ -1,6 +1,9 @@
-﻿Public Class PointReactions
+﻿Imports System.Runtime.InteropServices.WindowsRuntime
 
-    'ATTRIBUTES ******************************
+Public Class PointReactions
+    Implements IComparable
+
+    'ATTRIBUTES **********************************************************
     Private Property numberResults As Integer
     Private Property obj As String()
     Private Property elm As String()
@@ -16,16 +19,18 @@
 
 
 
-    'CONSTRUCTOR *****************************
+    'CONSTRUCTOR ************************************************************
     'Default Constructor applies
 
 
+
+    'METHODS ****************************************************************
 
     'GETTERS and SETTERS *********************
 
     'Setters
     Public Sub setNumberResults(numberResults As Integer)
-        Me.NumberResults = numberResults
+        Me.numberResults = numberResults
     End Sub
     Public Sub setObj(obj As String())
         Me.obj = obj
@@ -98,6 +103,81 @@
     End Function
     Public Function getM3() As Double()
         Return Me.m3
+    End Function
+
+
+
+    'HASHCODE
+
+    'Method inherited from the Object superclass and that has to be overwritten in order to generate
+    'ad hoc hashcodes based on the values assigned to the specific attributes of this class.
+    'The hashcode is essential to be able to sort and store instances of this class properly 
+    'in whatever concrete implementation of the abstract data structure Hash Table.
+    Public Overrides Function GetHashCode() As Integer
+        'Determines and returns the Hashcode of the class instance as the number given by the sum 
+        'of the hascodes/values of the most significant attributes of the class instance
+        Dim hash As Integer
+        hash = Me.getElm.GetHashCode + Me.getObj.GetHashCode + Me.getF1.GetHashCode +
+               Me.getF2.GetHashCode + Me.getF3.GetHashCode + Me.getM1.GetHashCode +
+               Me.getM2.GetHashCode + Me.getM3.GetHashCode
+        Return hash
+    End Function
+
+
+    'COMPARETO
+
+    'Method implemented from the IComparable Functional Interface which unique method CompareTo 
+    'gets called everytime we want to compare an instance of this class with another object.
+    'The method needs to be implemented accordingly with the criteria we want to use to define
+    'which object is greater or smaller than the other based on the values assigned to its 
+    'attributes.
+    Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+        Throw New NotImplementedException()
+        '1. Check input Obj Data Type to match the Class
+        If Not obj.GetType().Equals(Me.GetType) Then
+            Return Nothing
+        End If
+        '2. Down-Cast the input Object to the PointReactions Class
+        Dim pReactObj As PointReactions
+        pReactObj = CType(obj, PointReactions)
+        '3. Compare the two instances of the class giving precedence to the number of results
+        If (Me.getNumberResults > pReactObj.getNumberResults) Then
+            Return 1
+        ElseIf (Me.getNumberResults < pReactObj.getNumberResults) Then
+            Return -1
+        End If
+
+        Return 0
+    End Function
+
+
+    'EQUALS
+
+    'Method inherited from the Object superclass and that gets called everytime we check whether 
+    'two instances of this class are equal or not. 
+    'It has to be overwritten based on the values assigned to the attributes of the class instances
+    Public Overrides Function Equals(obj As Object) As Boolean
+
+        '1. Check input Obj Data Type to match the PointObj Class
+        If Not obj.GetType().Equals(Me.GetType) Then
+            Return False
+        End If
+
+        '2. Down-Cast the input object to the PointObj Class
+        Dim pReactObj As PointReactions
+        pReactObj = CType(obj, PointReactions)
+
+        '3. Check if main attributes are equal
+        ' - Note : Equals method has to be used to compare all attributes since they are all Arrays/Lists so...other 
+        '   data structures...they're not primitive type objects!
+        If (Me.getElm.Equals(pReactObj.getElm) And Me.getObj.Equals(pReactObj.getObj) And
+           Me.getF1.Equals(pReactObj.getF1) And Me.getF2.Equals(pReactObj.getF2) And Me.getF3.Equals(pReactObj.getF3) And
+           Me.getM1.Equals(pReactObj.getM1) And Me.getM2.Equals(pReactObj.getM2) And Me.getM3.Equals(pReactObj.getM3)) Then
+            Return True
+        Else
+            Return False
+        End If
+
     End Function
 
 
