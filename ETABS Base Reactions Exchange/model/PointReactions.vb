@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.InteropServices.WindowsRuntime
 
 Public Class PointReactions
-    Implements IComparable
+    Inherits ETABSData
 
     'ATTRIBUTES **********************************************************
     Private Property numberResults As Integer
@@ -20,7 +20,29 @@ Public Class PointReactions
 
 
     'CONSTRUCTOR ************************************************************
-    'Default Constructor applies
+    'Default Constructor
+    Public Sub New()
+        MyBase.New()
+    End Sub
+    'Overloaded
+    Public Sub New(numRes As Integer, obj As String(), elm As String(), loadCase() As String,
+                   stepType As String(), stepNum As Double(), f1 As Double(), f2 As Double(),
+                   f3 As Double(), m1 As Double(), m2 As Double(), m3 As Double())
+        With Me
+            .numberResults = numRes
+            .obj = obj
+            .elm = elm
+            .loadCase = loadCase
+            .stepType = stepType
+            .stepNum = stepNum
+            .f1 = f1
+            .f2 = f2
+            .f3 = f3
+            .m1 = m1
+            .m2 = m2
+            .m3 = m3
+        End With
+    End Sub
 
 
 
@@ -131,7 +153,7 @@ Public Class PointReactions
     'The method needs to be implemented accordingly with the criteria we want to use to define
     'which object is greater or smaller than the other based on the values assigned to its 
     'attributes.
-    Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+    Public Overrides Function CompareTo(obj As Object) As Integer
         Throw New NotImplementedException()
         '1. Check input Obj Data Type to match the Class
         If Not obj.GetType().Equals(Me.GetType) Then

@@ -1,7 +1,7 @@
 ﻿
 Namespace model
     Public Class PointDataSet
-        Implements IComparable
+        Inherits ETABSData
 
         'ATTRIBUTES *****************************************************************************
         Private Property point As PointObj
@@ -63,7 +63,7 @@ Namespace model
         'The method needs to be implemented accordingly with the criteria we want to use to define
         'which object is greater or smaller than the other based on the values assigned to its 
         'attributes.
-        Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+        Public Overrides Function CompareTo(obj As Object) As Integer
             Throw New NotImplementedException()
             '1. Check input Obj Data Type to match the PointObj Class
             If Not obj.GetType().Equals(Me.GetType) Then

@@ -10,7 +10,7 @@
     End Sub
 
     'METHODS
-    Public Sub transfer() Implements DataTransfer.transfer
+    Public Overridable Sub transfer() Implements DataTransfer.transfer
         Throw New NotImplementedException()
     End Sub
 End Class

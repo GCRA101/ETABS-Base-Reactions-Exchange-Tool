@@ -88,14 +88,25 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\DataTransfer.vb" />
     <Compile Include="model\ETABSConnection.vb" />
     <Compile Include="model\ETABSConnector.vb" />
+    <Compile Include="model\ETABSDataSet.vb" />
     <Compile Include="model\ETABSTransferrer.vb" />
     <Compile Include="model\Observable.vb" />
     <Compile Include="model\Observer.vb" />
     <Compile Include="model\PointDataSet.vb" />
     <Compile Include="model\PointObj.vb" />
     <Compile Include="model\PointReactions.vb" />
+    <Compile Include="model\PointReactionsTransfer.vb" />
+    <Compile Include="model\PointReactionsTransferrer.vb" />
+    <Compile Include="model\PullBehaviour.vb" />
+    <Compile Include="model\PullData.vb" />
+    <Compile Include="model\PullPointReactions.vb" />
+    <Compile Include="model\PushBehaviour.vb" />
+    <Compile Include="model\PushData.vb" />
+    <Compile Include="model\PushPointReactions.vb" />
+    <Compile Include="model\TransferBehaviour.vb" />
     <Compile Include="view\AboutBox.Designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
     </Compile>
