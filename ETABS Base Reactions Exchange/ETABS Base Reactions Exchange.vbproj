@@ -88,11 +88,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\AreaObjModifiers.vb" />
     <Compile Include="model\DataTransfer.vb" />
     <Compile Include="model\ETABSConnection.vb" />
     <Compile Include="model\ETABSConnector.vb" />
     <Compile Include="model\ETABSDataSet.vb" />
     <Compile Include="model\ETABSTransferrer.vb" />
+    <Compile Include="model\FrameObjModifiers.vb" />
+    <Compile Include="model\ObjModifiers.vb" />
     <Compile Include="model\Observable.vb" />
     <Compile Include="model\Observer.vb" />
     <Compile Include="model\PointDataSet.vb" />
@@ -106,6 +109,7 @@
     <Compile Include="model\PushBehaviour.vb" />
     <Compile Include="model\PushData.vb" />
     <Compile Include="model\PushPointReactions.vb" />
+    <Compile Include="model\ShellForces.vb" />
     <Compile Include="model\TransferBehaviour.vb" />
     <Compile Include="view\AboutBox.Designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
