@@ -2,8 +2,8 @@
 
     'ATTRIBUTES
     Private numberResults As Integer
-    Private obj, elm, pointElm, loadCase, stepType, stepNum As String()
-    Private f11, f22, f12, fMax, fMin, fAngle, fvm, m11, m22, m12, mMax, mMin, mAngle, v13, v23, vMax, vAngle As Double()
+    Private obj, elm, pointElm, loadCase, stepType As String()
+    Private stepNum, f11, f22, f12, fMax, fMin, fAngle, fvm, m11, m22, m12, mMax, mMin, mAngle, v13, v23, vMax, vAngle As Double()
 
     'CONSTRUCTORS
     'Default
@@ -11,7 +11,7 @@
     End Sub
     'Overloaded
     Public Sub New(numberResults As Integer, obj As String(), elm As String(), pointElm As String(), loadCase As String(), stepType As String(),
-                   stepNum As String(), f11 As Double(), f22 As Double(), f12 As Double(), fMax As Double(), fMin As Double(), fAngle As Double(),
+                   stepNum As Double(), f11 As Double(), f22 As Double(), f12 As Double(), fMax As Double(), fMin As Double(), fAngle As Double(),
                    fvm As Double(), m11 As Double(), m22 As Double(), m12 As Double(), mMax As Double(), mMin As Double(), mAngle As Double(),
                    v13 As Double(), v23 As Double(), vMax As Double(), vAngle As Double())
         With Me
@@ -62,8 +62,8 @@
     End Sub
     Public Sub setStepType(stepType As String())
         Me.stepType = stepType
-    End Sub-
-    Public Sub setStepNum(stepNum As String())
+    End Sub
+    Public Sub setStepNum(stepNum As Double())
         Me.stepNum = stepNum
     End Sub
     Public Sub setF11(f11 As Double())
@@ -137,8 +137,8 @@
     End Function
     Public Function getstepType() As String()
         Return Me.stepType
-    End Function-
-    Public Function getstepNum() As String()
+    End Function
+    Public Function getstepNum() As Double()
         Return Me.stepNum
     End Function
     Public Function getf11() As Double()

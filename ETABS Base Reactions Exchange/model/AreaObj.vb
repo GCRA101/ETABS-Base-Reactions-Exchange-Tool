@@ -6,8 +6,9 @@ Public Class AreaObj
     'ATTRIBUTES
     Private name As String
     Private points As List(Of PointObj)
-    Private areaProperty As areaObjProperty
-
+    Private areaProperty As AreaObjProperty
+    Private groupName As String
+    Private propertyModifiers As AreaObjModifiers
 
     'CONSTRUCTORS
     'Default
@@ -18,10 +19,19 @@ Public Class AreaObj
         Me.name = name
     End Sub
     'Overloaded2
-    Public Sub New(name As String, points As List(Of PointObj), areaProperty As areaObjProperty)
+    Public Sub New(name As String, points As List(Of PointObj), areaProperty As AreaObjProperty, Optional groupName As String = "",
+                   Optional propertyModifiers As AreaObjModifiers = Nothing)
         Me.name = name
         Me.points = points
         Me.areaProperty = areaProperty
+        Me.groupName = groupName
+        Me.propertyModifiers = propertyModifiers
+    End Sub
+    'Overloaded3
+    Public Sub New(name As String, groupName As String, propertyModifiers As AreaObjModifiers)
+        Me.name = name
+        Me.groupName = groupName
+        Me.propertyModifiers = propertyModifiers
     End Sub
 
 
@@ -37,6 +47,12 @@ Public Class AreaObj
     Public Sub setAreaProperty(areaProperty As areaObjProperty)
         Me.areaProperty = areaProperty
     End Sub
+    Public Sub setGroupName(groupName As String)
+        Me.groupName = groupName
+    End Sub
+    Public Sub setPropertyModifiers(propertyModifiers As AreaObjModifiers)
+        Me.propertyModifiers = propertyModifiers
+    End Sub
 
     'Getters
     Public Function getName() As String
@@ -49,6 +65,13 @@ Public Class AreaObj
     Public Function getAreaProperty() As areaObjProperty
         Return Me.areaProperty
     End Function
+    Public Function getGroupName() As String
+        Return Me.groupName
+    End Function
+    Public Function getPropertyModifiers() As AreaObjModifiers
+        Return Me.propertyModifiers
+    End Function
+
 
 
     'HASHCODE
@@ -60,7 +83,7 @@ Public Class AreaObj
     Public Overrides Function GetHashCode() As Integer
         'Determines and returns the Hashcode of the class instance as the integer number given 
         'by the sum of the hashcodes of the name and the corner points
-        Return Me.name.GetHashCode() + Me.getPoints().GetHashCode()
+        Return Me.name.GetHashCode() '+ Me.getPoints().GetHashCode()
     End Function
 
 

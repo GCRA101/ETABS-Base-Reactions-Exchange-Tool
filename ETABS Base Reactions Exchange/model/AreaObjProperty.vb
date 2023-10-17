@@ -3,10 +3,10 @@
 Public Class AreaObjProperty
 
     'ATTRIBUTES
-    Protected name As String
-    Protected color As Integer
-    Protected notes As String
-    Protected guid As String
+    Public name As String
+    Public color As Integer
+    Public notes As String
+    Public guid As String
 
     'CONSTRUCTORS
     'Default
@@ -20,30 +20,30 @@ Public Class AreaObjProperty
     'METHODS
 
     'Setters
-    Protected Sub setName(name As String)
+    Public Sub setName(name As String)
         Me.name = name
     End Sub
-    Protected Sub setColor(color As Integer)
+    Public Sub setColor(color As Integer)
         Me.color = color
     End Sub
-    Protected Sub setNotes(notes As String)
+    Public Sub setNotes(notes As String)
         Me.notes = notes
     End Sub
-    Protected Sub setGuid(guid As String)
+    Public Sub setGuid(guid As String)
         Me.guid = guid
     End Sub
 
     'Getters
-    Protected Function getName() As String
+    Public Function getName() As String
         Return Me.name
     End Function
-    Protected Function getColor() As Integer
+    Public Function getColor() As Integer
         Return Me.color
     End Function
-    Protected Function getNotes() As String
+    Public Function getNotes() As String
         Return Me.notes
     End Function
-    Protected Function getGuid() As String
+    Public Function getGuid() As String
         Return Me.guid
     End Function
 
