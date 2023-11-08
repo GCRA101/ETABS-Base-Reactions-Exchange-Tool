@@ -95,6 +95,13 @@
     <Compile Include="model\ETABSDataSet.vb" />
     <Compile Include="model\ETABSTransferrer.vb" />
     <Compile Include="model\FrameObjModifiers.vb" />
+    <Compile Include="model\LoadCase.vb" />
+    <Compile Include="model\LoadCaseModal.vb" />
+    <Compile Include="model\LoadCaseModalEigen.vb" />
+    <Compile Include="model\LoadCaseResponseSpectrum.vb" />
+    <Compile Include="model\LoadCaseStatic.vb" />
+    <Compile Include="model\LoadCaseStaticLinear.vb" />
+    <Compile Include="model\LoadCaseStaticNonLinear.vb" />
     <Compile Include="model\ObjModifiers.vb" />
     <Compile Include="model\Observable.vb" />
     <Compile Include="model\Observer.vb" />
