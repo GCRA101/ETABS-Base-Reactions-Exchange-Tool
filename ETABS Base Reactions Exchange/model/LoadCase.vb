@@ -30,10 +30,10 @@
 
 
         'Getters
-        Protected Function getNumLoads()
+        Protected Function getNumLoads() As Integer
             Return Me.numLoads
         End Function
-        Protected Function getLoadNames()
+        Protected Function getLoadNames() As String()
             Return Me.loadNames
         End Function
 

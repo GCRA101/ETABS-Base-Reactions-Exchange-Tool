@@ -49,7 +49,7 @@
         Public Function setInitialCaseName() As String
             Return Me.initialCaseName
         End Function
-        Public Function setLoadTypes() As String
+        Public Function setLoadTypes() As String()
             Return Me.loadTypes
         End Function
         Public Function setNumModesMax() As Integer
