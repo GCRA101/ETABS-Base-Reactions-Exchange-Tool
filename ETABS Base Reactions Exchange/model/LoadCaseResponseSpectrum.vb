@@ -7,7 +7,7 @@
         Private modalCaseName As String
         Private functions() As String
         Private csys() As String
-        Private scaleFactors(), ang(), eccen() As Double
+        Private scaleFactors(), ang(), eccen As Double
 
         'CONSTRUCTORS
         'Default
@@ -15,9 +15,9 @@
             MyBase.New()
         End Sub
         'Overloaded
-        Public Sub New(modalCaseName As String, numLoads As Integer, loadNames() As String, functions() As String,
-                       csys() As String, scaleFactors() As Double, ang() As Double, eccen() As Double)
-            MyBase.New(numLoads, loadNames)
+        Public Sub New(loadCaseName As String, modalCaseName As String, numLoads As Integer, loadNames() As String,
+                       functions() As String, csys() As String, scaleFactors() As Double, ang() As Double, eccen As Double)
+            MyBase.New(loadCaseName, numLoads, loadNames)
             Me.modalCaseName = modalCaseName
             Me.functions = functions
             Me.csys = csys
@@ -45,7 +45,7 @@
         Public Sub setAng(ang() As Double)
             Me.ang = ang
         End Sub
-        Public Sub setEccen(eccen() As Double)
+        Public Sub setEccen(eccen As Double)
             Me.eccen = eccen
         End Sub
 
@@ -65,7 +65,7 @@
         Public Function getAng() As Double()
             Return Me.ang
         End Function
-        Public Function getEccen() As Double()
+        Public Function getEccen() As Double
             Return Me.eccen
         End Function
 

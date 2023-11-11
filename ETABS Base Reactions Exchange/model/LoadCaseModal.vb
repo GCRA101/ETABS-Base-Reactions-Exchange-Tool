@@ -15,9 +15,9 @@
             MyBase.New()
         End Sub
         'Overloaded
-        Public Sub New(initalCaseName As String, numLoads As Integer, loadTypes() As String, loadNames() As String,
-                       numModesMax As Integer, numModesMin As Integer, targetParams() As Double)
-            MyBase.New(numLoads, loadNames)
+        Public Sub New(loadCaseName As String, initalCaseName As String, numLoads As Integer, loadTypes() As String,
+                       loadNames() As String, numModesMax As Integer, numModesMin As Integer, targetParams() As Double)
+            MyBase.New(loadCaseName, numLoads, loadNames)
             Me.initialCaseName = initialCaseName
             Me.loadTypes = loadTypes
             Me.numModesMax = numModesMax
@@ -46,19 +46,19 @@
 
 
         'Getters
-        Public Function setInitialCaseName() As String
+        Public Function getInitialCaseName() As String
             Return Me.initialCaseName
         End Function
-        Public Function setLoadTypes() As String()
+        Public Function getLoadTypes() As String()
             Return Me.loadTypes
         End Function
-        Public Function setNumModesMax() As Integer
+        Public Function getNumModesMax() As Integer
             Return Me.numModesMax
         End Function
-        Public Function setNumModesMin() As Integer
+        Public Function getNumModesMin() As Integer
             Return Me.numModesMin
         End Function
-        Public Function setTargetParams() As Double()
+        Public Function getTargetParams() As Double()
             Return Me.targetParams
         End Function
 

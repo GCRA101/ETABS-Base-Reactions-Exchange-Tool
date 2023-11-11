@@ -12,10 +12,10 @@
         Public Sub New()
             MyBase.New()
         End Sub
-        Public Sub New(initalCaseName As String, numLoads As Integer, loadTypes() As String, loadNames() As String,
+        Public Sub New(loadCaseName As String, initalCaseName As String, numLoads As Integer, loadTypes() As String, loadNames() As String,
                        numModesMax As Integer, numModesMin As Integer, targetParams() As Double, eigenShiftFreq As Double, eigenCutOff As Double,
                        eigenTol As Double, allowAutoFreqShift As Integer, staticCorrect() As Boolean)
-            MyBase.New(initalCaseName, numLoads, loadTypes, loadNames, numModesMax, numModesMin, targetParams)
+            MyBase.New(loadCaseName, initalCaseName, numLoads, loadTypes, loadNames, numModesMax, numModesMin, targetParams)
             Me.eigenShiftFreq = eigenShiftFreq
             Me.eigenCutOff = eigenCutOff
             Me.eigenTol = eigenTol

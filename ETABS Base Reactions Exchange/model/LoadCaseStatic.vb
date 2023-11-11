@@ -16,9 +16,10 @@
         End Sub
 
         'Overloaded'
-        Public Sub New(initialCaseName As String, numLoads As Integer, loadTypes() As String, loadNames() As String, sfs() As Double)
+        Public Sub New(loadCaseName As String, initialCaseName As String, numLoads As Integer, loadTypes() As String,
+                       loadNames() As String, sfs() As Double)
             'Call the overloaded super-constructor
-            MyBase.New(numLoads, loadNames)
+            MyBase.New(loadCaseName, numLoads, loadNames)
             'Assign additional attributes
             Me.initialCaseName = initialCaseName
             Me.loadTypes = loadTypes
@@ -29,24 +30,24 @@
         'METHODS'
 
         'Setters
-        Protected Sub setInitialCaseName(initialCaseName As String)
+        Public Sub setInitialCaseName(initialCaseName As String)
             Me.initialCaseName = initialCaseName
         End Sub
-        Protected Sub setLoadTypes(loadTypes() As String)
+        Public Sub setLoadTypes(loadTypes() As String)
             Me.loadTypes = loadTypes
         End Sub
-        Protected Sub setSfs(sfs() As Double)
+        Public Sub setSfs(sfs() As Double)
             Me.sfs = sfs
         End Sub
 
         'Getters
-        Protected Function getInitialCaseName() As String
+        Public Function getInitialCaseName() As String
             Return Me.initialCaseName
         End Function
-        Protected Function getLoadTypes() As String()
+        Public Function getLoadTypes() As String()
             Return Me.loadTypes
         End Function
-        Protected Function setSfs() As Double()
+        Public Function getSfs() As Double()
             Return Me.sfs
         End Function
 

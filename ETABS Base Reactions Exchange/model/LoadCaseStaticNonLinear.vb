@@ -16,10 +16,10 @@
             MyBase.New()
         End Sub
         'Overloaded
-        Public Sub New(initialCaseName As String, numLoads As Integer, loadTypes() As String, loadNames() As String, sfs() As Double,
-                       massSource As String, modalCaseName As String, nlGeomType As Integer)
+        Public Sub New(loadCaseName As String, initialCaseName As String, numLoads As Integer, loadTypes() As String,
+                       loadNames() As String, sfs() As Double, massSource As String, modalCaseName As String, nlGeomType As Integer)
             'Call the overloaded super-constructor
-            MyBase.New(initialCaseName, numLoads, loadTypes, loadNames, sfs)
+            MyBase.New(loadCaseName, initialCaseName, numLoads, loadTypes, loadNames, sfs)
             'Assign additional attributes
             Me.massSource = massSource
             Me.modalCaseName = modalCaseName

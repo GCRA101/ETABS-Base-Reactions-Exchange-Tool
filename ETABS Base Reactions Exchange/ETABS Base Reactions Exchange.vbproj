@@ -98,6 +98,7 @@
     <Compile Include="model\LoadCase.vb" />
     <Compile Include="model\LoadCaseModal.vb" />
     <Compile Include="model\LoadCaseModalEigen.vb" />
+    <Compile Include="model\LoadCaseModalRitz.vb" />
     <Compile Include="model\LoadCaseResponseSpectrum.vb" />
     <Compile Include="model\LoadCaseStatic.vb" />
     <Compile Include="model\LoadCaseStaticLinear.vb" />
@@ -112,6 +113,7 @@
     <Compile Include="model\PointReactionsTransferrer.vb" />
     <Compile Include="model\PullBehaviour.vb" />
     <Compile Include="model\PullData.vb" />
+    <Compile Include="model\PullLoadCases.vb" />
     <Compile Include="model\PullPointReactions.vb" />
     <Compile Include="model\PushBehaviour.vb" />
     <Compile Include="model\PushData.vb" />

@@ -10,9 +10,9 @@
         Public Sub New()
             MyBase.New()
         End Sub
-        Public Sub New(initalCaseName As String, numLoads As Integer, loadTypes() As String, loadNames() As String,
+        Public Sub New(loadCaseName As String, initalCaseName As String, numLoads As Integer, loadTypes() As String, loadNames() As String,
                        numModesMax As Integer, numModesMin As Integer, targetParams() As Double, ritzMaxCyc() As Integer)
-            MyBase.New(initalCaseName, numLoads, loadTypes, loadNames, numModesMax, numModesMin, targetParams)
+            MyBase.New(loadCaseName, initalCaseName, numLoads, loadTypes, loadNames, numModesMax, numModesMin, targetParams)
             Me.ritzMaxCyc = ritzMaxCyc
         End Sub
 
