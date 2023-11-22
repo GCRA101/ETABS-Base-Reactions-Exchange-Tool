@@ -1,4 +1,4 @@
-﻿Imports System.Text.RegularExpressions
+﻿viImports System.Text.RegularExpressions
 Imports ETABS_Base_Reactions_Exchange.model
 
 Public Class PushPointReactions
@@ -18,9 +18,10 @@ Public Class PushPointReactions
         MyBase.New(etabsModel)
         Me.ppData = ppData
     End Sub
+
+
+
     'METHODS
-
-
     Public Overrides Sub push()
 
 
@@ -32,7 +33,7 @@ Public Class PushPointReactions
         createGroupForReactionPoints()
 
         For Each selStoryName In selStoryNames
-            ret = targetEtabsModel.PointObj.GetNameListOnStory(selStoryName, ppNumberNames, ppNames)
+            ret = Me.etabsModel.PointObj.GetNameListOnStory(selStoryName, ppNumberNames, ppNames)
             targetppNamesByStoryList.Add(ppNames)
         Next
 

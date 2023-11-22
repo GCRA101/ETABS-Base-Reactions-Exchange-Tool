@@ -23,68 +23,76 @@
             'Unlock ETABS Model
             ret = Me.etabsModel.SetModelIsLocked(False)
 
-            loadCases.ToList.ForEach(Function(lc)
-                                         Select Case lc.GetType()
+            'Extract Existing Load Case Names from Etabs Model
+            Dim numNames As Integer, lcNames As String()
+            ret = Me.etabsModel.LoadCases.GetNameList(numNames, lcNames)
 
-                                             Case GetType(LoadCaseStaticLinear)
-                                                 With Me.etabsModel.LoadCases.StaticLinear
-                                                     Dim lcsl As LoadCaseStaticLinear = DirectCast(lc, LoadCaseStaticLinear)
-                                                     .SetCase(lcsl.getLoadCaseName)
-                                                     .SetInitialCase(lcsl.getLoadCaseName, lcsl.getInitialCaseName)
-                                                     .SetLoads(lcsl.getLoadCaseName, lcsl.getNumLoads, lcsl.getLoadTypes,
+            loadCases.Where(Function(lc)
+                                Return Not lcNames.Contains(lc.getLoadCaseName())
+                            End Function).
+                            ToList.
+                            ForEach(Function(lc)
+                                        Select Case lc.GetType()
+
+                                            Case GetType(LoadCaseStaticLinear)
+                                                With Me.etabsModel.LoadCases.StaticLinear
+                                                    Dim lcsl As LoadCaseStaticLinear = DirectCast(lc, LoadCaseStaticLinear)
+                                                    .SetCase(lcsl.getLoadCaseName)
+                                                    .SetInitialCase(lcsl.getLoadCaseName, lcsl.getInitialCaseName)
+                                                    .SetLoads(lcsl.getLoadCaseName, lcsl.getNumLoads, lcsl.getLoadTypes,
                                                                lcsl.getLoadNames, lcsl.getSfs)
-                                                 End With
+                                                End With
 
-                                             Case GetType(LoadCaseStaticNonLinear)
-                                                 With Me.etabsModel.LoadCases.StaticNonlinear
-                                                     Dim lcsnl As LoadCaseStaticNonLinear = DirectCast(lc, LoadCaseStaticNonLinear)
-                                                     .SetCase(lcsnl.getLoadCaseName)
-                                                     .SetInitialCase(lcsnl.getLoadCaseName, lcsnl.getInitialCaseName)
-                                                     .SetLoads(lcsnl.getLoadCaseName, lcsnl.getNumLoads, lcsnl.getLoadTypes,
+                                            Case GetType(LoadCaseStaticNonLinear)
+                                                With Me.etabsModel.LoadCases.StaticNonlinear
+                                                    Dim lcsnl As LoadCaseStaticNonLinear = DirectCast(lc, LoadCaseStaticNonLinear)
+                                                    .SetCase(lcsnl.getLoadCaseName)
+                                                    .SetInitialCase(lcsnl.getLoadCaseName, lcsnl.getInitialCaseName)
+                                                    .SetLoads(lcsnl.getLoadCaseName, lcsnl.getNumLoads, lcsnl.getLoadTypes,
                                                            lcsnl.getLoadNames, lcsnl.getSfs)
-                                                     .SetMassSource(lcsnl.getLoadCaseName, lcsnl.getMassSource)
-                                                     .SetModalCase(lcsnl.getLoadCaseName, lcsnl.getModalCaseName)
-                                                     .SetGeometricNonlinearity(lcsnl.getLoadCaseName, lcsnl.getNlGeomType)
-                                                 End With
+                                                    .SetMassSource(lcsnl.getLoadCaseName, lcsnl.getMassSource)
+                                                    .SetModalCase(lcsnl.getLoadCaseName, lcsnl.getModalCaseName)
+                                                    .SetGeometricNonlinearity(lcsnl.getLoadCaseName, lcsnl.getNlGeomType)
+                                                End With
 
-                                             Case GetType(LoadCaseResponseSpectrum)
+                                            Case GetType(LoadCaseResponseSpectrum)
 
-                                                 With Me.etabsModel.LoadCases.ResponseSpectrum
-                                                     Dim lcrs As LoadCaseResponseSpectrum = DirectCast(lc, LoadCaseResponseSpectrum)
-                                                     .SetCase(lcrs.getLoadCaseName)
-                                                     .SetLoads(lcrs.getLoadCaseName, lcrs.getNumLoads, lcrs.getLoadNames, lcrs.getFunctions,
+                                                With Me.etabsModel.LoadCases.ResponseSpectrum
+                                                    Dim lcrs As LoadCaseResponseSpectrum = DirectCast(lc, LoadCaseResponseSpectrum)
+                                                    .SetCase(lcrs.getLoadCaseName)
+                                                    .SetLoads(lcrs.getLoadCaseName, lcrs.getNumLoads, lcrs.getLoadNames, lcrs.getFunctions,
                                                                lcrs.getScaleFactors, lcrs.getCSys, lcrs.getAng)
-                                                     .SetModalCase(lcrs.getLoadCaseName, lcrs.getModalCaseName)
-                                                     .SetEccentricity(lcrs.getLoadCaseName, lcrs.getEccen)
-                                                 End With
+                                                    .SetModalCase(lcrs.getLoadCaseName, lcrs.getModalCaseName)
+                                                    .SetEccentricity(lcrs.getLoadCaseName, lcrs.getEccen)
+                                                End With
 
-                                             Case GetType(LoadCaseModalEigen)
+                                            Case GetType(LoadCaseModalEigen)
 
-                                                 With Me.etabsModel.LoadCases.ModalEigen
-                                                     Dim lcme As LoadCaseModalEigen = DirectCast(lc, LoadCaseModalEigen)
-                                                     .SetCase(lcme.getLoadCaseName)
-                                                     .SetInitialCase(lcme.getLoadCaseName, lcme.getInitialCaseName)
-                                                     .SetLoads(lcme.getLoadCaseName, lcme.getNumLoads, lcme.getLoadTypes, lcme.getLoadNames,
+                                                With Me.etabsModel.LoadCases.ModalEigen
+                                                    Dim lcme As LoadCaseModalEigen = DirectCast(lc, LoadCaseModalEigen)
+                                                    .SetCase(lcme.getLoadCaseName)
+                                                    .SetInitialCase(lcme.getLoadCaseName, lcme.getInitialCaseName)
+                                                    .SetLoads(lcme.getLoadCaseName, lcme.getNumLoads, lcme.getLoadTypes, lcme.getLoadNames,
                                                                lcme.getTargetParams, lcme.getStaticCorrect)
-                                                     .SetNumberModes(lcme.getLoadCaseName, lcme.getNumModesMax, lcme.getNumModesMin)
-                                                     .SetParameters(lcme.getLoadCaseName, lcme.getEigenShiftFreq, lcme.getEigenCutOff,
+                                                    .SetNumberModes(lcme.getLoadCaseName, lcme.getNumModesMax, lcme.getNumModesMin)
+                                                    .SetParameters(lcme.getLoadCaseName, lcme.getEigenShiftFreq, lcme.getEigenCutOff,
                                                                     lcme.getEigenTol, lcme.getAllowAutoFreqShift)
-                                                 End With
+                                                End With
 
-                                             Case GetType(LoadCaseModalRitz)
+                                            Case GetType(LoadCaseModalRitz)
 
-                                                 With Me.etabsModel.LoadCases.ModalRitz
-                                                     Dim lcmr As LoadCaseModalRitz = DirectCast(lc, LoadCaseModalRitz)
-                                                     .SetCase(lcmr.getLoadCaseName)
-                                                     .SetInitialCase(lcmr.getLoadCaseName, lcmr.getInitialCaseName)
-                                                     .SetLoads(lcmr.getLoadCaseName, lcmr.getNumLoads, lcmr.getLoadTypes, lcmr.getLoadNames,
+                                                With Me.etabsModel.LoadCases.ModalRitz
+                                                    Dim lcmr As LoadCaseModalRitz = DirectCast(lc, LoadCaseModalRitz)
+                                                    .SetCase(lcmr.getLoadCaseName)
+                                                    .SetInitialCase(lcmr.getLoadCaseName, lcmr.getInitialCaseName)
+                                                    .SetLoads(lcmr.getLoadCaseName, lcmr.getNumLoads, lcmr.getLoadTypes, lcmr.getLoadNames,
                                                                lcmr.getRitzMaxCyc, lcmr.getTargetParams)
-                                                     .SetNumberModes(lcmr.getLoadCaseName, lcmr.getNumModesMax, lcmr.getNumModesMin)
-                                                 End With
-                                             Case Else
-                                                 Exit Function
-                                         End Select
-                                     End Function)
+                                                    .SetNumberModes(lcmr.getLoadCaseName, lcmr.getNumModesMax, lcmr.getNumModesMin)
+                                                End With
+                                            Case Else
+                                                Exit Function
+                                        End Select
+                                    End Function)
 
         End Sub
     End Class
