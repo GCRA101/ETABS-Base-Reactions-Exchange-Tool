@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.Remoting.Messaging
 
-Public Class AreaObjProperty
+Public MustInherit Class AreaObjProperty
+    Implements IComparable
 
     'ATTRIBUTES
     Public name As String
@@ -47,4 +48,7 @@ Public Class AreaObjProperty
         Return Me.guid
     End Function
 
+    Public Overridable Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+        Throw New NotImplementedException()
+    End Function
 End Class

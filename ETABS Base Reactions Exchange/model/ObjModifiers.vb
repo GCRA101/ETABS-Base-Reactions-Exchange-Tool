@@ -1,4 +1,5 @@
 ﻿Public MustInherit Class ObjModifiers
+    Implements IComparable
 
     'ATTRIBUTES
     Protected name As String, mass As Double, weight As Double, values() As Double
@@ -19,9 +20,6 @@
     Public Sub setName(name As String)
         Me.name = name
     End Sub
-    Public Sub setValues(values() As Double)
-        Me.values = values
-    End Sub
 
     'Getters
     Public Function getName() As String
@@ -29,6 +27,10 @@
     End Function
     Public Function getValues() As Double()
         Return Me.values
+    End Function
+
+    Public Overridable Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+        Throw New NotImplementedException()
     End Function
 
 End Class

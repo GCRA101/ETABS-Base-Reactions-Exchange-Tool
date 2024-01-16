@@ -1,5 +1,5 @@
 ﻿Public Class AreaDataSet
-    Implements IComparable
+    Inherits ETABSData
 
     'ATTRIBUTES
     Private areaObj As AreaObj
@@ -55,7 +55,7 @@
     'The method needs to be implemented accordingly with the criteria we want to use to define
     'which object is greater or smaller than the other based on the values assigned to its 
     'attributes.
-    Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+    Public Overrides Function CompareTo(obj As Object) As Integer
         '1. Check input Obj Data Type to match the class of the present object
         If Not obj.GetType().Equals(Me.GetType) Then
             Return Nothing
@@ -85,7 +85,7 @@
         adsObj = CType(obj, AreaDataSet)
 
         '3. Check if the areaObjects of the two objects are the same
-        If Me.getAreaObj.Equals(adsObj.getAreaObj) Then
+        If Me.getAreaObj.Equals(adsObj.getAreaObj) And Me.forces.Equals(adsObj.getForces()) Then
             Return True
         End If
 

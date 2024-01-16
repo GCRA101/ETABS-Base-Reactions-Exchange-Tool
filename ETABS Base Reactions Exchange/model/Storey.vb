@@ -1,66 +1,59 @@
-﻿Imports ETABS_Base_Reactions_Exchange.model
-
-Public Class WallProperty
-    Inherits AreaObjProperty
+﻿Public Class Storey
+    Inherits ETABSData
 
     'ATTRIBUTES
-    Private wallPropType As ETABSv1.eWallPropType
-    Private shellType As ETABSv1.eShellType
-    Private matProp As String
-    Private thickness As Double
-
+    Private name As String
+    Private elevation, height As Double
+    Private isMaster As Boolean
+    Private guid As String
 
     'CONSTRUCTORS
-
-    'Default
-    Public Sub New()
-        MyBase.New()
-    End Sub
-    'Overloaded1
+    'Overloaded 01
     Public Sub New(name As String)
-        MyBase.New(name)
+        Me.name = name
     End Sub
-    'Overloaded2
-    Public Sub New(name As String, wallPropType As ETABSv1.eWallPropType, shellType _
-                   As ETABSv1.eShellType, matProp As String, thickness As Double)
-        MyBase.New(name)
-        With Me
-            .wallPropType = wallPropType
-            .shellType = shellType
-            .matProp = matProp
-            .thickness = thickness
-        End With
+    'Overloaded 02
+    Public Sub New(name As String, elevation As Double, height As Double,
+                   isMaster As Boolean, guid As String)
+        Me.name = name
+        Me.elevation = elevation
+        Me.height = height
+        Me.isMaster = isMaster
+        Me.guid = guid
     End Sub
-
 
     'METHODS
 
-    'Setters
-    Public Sub setWallPropType(wallPropType As ETABSv1.eWallPropType)
-        Me.wallPropType = wallPropType
+    'Setters and Getters
+    Public Sub setName(name As String)
+        Me.name = name
     End Sub
-    Public Sub setShellType(shellType As ETABSv1.eShellType)
-        Me.shellType = shellType
+    Public Sub setElevation(elevation As Double)
+        Me.elevation = elevation
     End Sub
-    Public Sub setMatProp(matProp As String)
-        Me.matProp = matProp
+    Public Sub setHeight(height As Double)
+        Me.height = height
     End Sub
-    Public Sub setThickness(thickness As Double)
-        Me.thickness = thickness
+    Public Sub setMaster(isMaster As Boolean)
+        Me.isMaster = isMaster
     End Sub
-
-    'Getters
-    Public Function getWallPropType() As ETABSv1.eWallPropType
-        Return Me.wallPropType
+    Public Sub setGuid(guid As String)
+        Me.guid = guid
+    End Sub
+    Public Function getName() As String
+        Return Me.name
     End Function
-    Public Function getShellType() As ETABSv1.eShellType
-        Return Me.shellType
+    Public Function getElevation() As Double
+        Return Me.elevation
     End Function
-    Public Function getMatProp() As String
-        Return Me.matProp
+    Public Function getHeight() As Double
+        Return Me.height
     End Function
-    Public Function getThickness() As Double
-        Return Me.thickness
+    Public Function getMaster() As Boolean
+        Return Me.isMaster
+    End Function
+    Public Function getGuid() As String
+        Return Me.guid
     End Function
 
 
@@ -72,9 +65,11 @@ Public Class WallProperty
     'in whatever concrete implementation of the abstract data structure Hash Table.
     Public Overrides Function GetHashCode() As Integer
         'Determines and returns the Hashcode of the class instance as the number given by the sum 
-        'of the hashcodes of a number of its attributes
+        'of the name's corresponding hashcode plus the integer result of a local hashing function
+        'working with the values assigned to the other attributes.
         Dim hash As Integer
-        hash = Me.name.GetHashCode() + Me.wallPropType.GetHashCode() + CInt(Me.thickness)
+        hash = Me.getName.GetHashCode +
+            CInt(Math.Round(CDec((Me.elevation + Me.height))))
         Return hash
     End Function
 
@@ -93,14 +88,14 @@ Public Class WallProperty
             Return Nothing
         End If
         '2. Down-Cast the input Object to the current class
-        Dim wpObj As WallProperty
-        wpObj = CType(obj, WallProperty)
-        '3. Compare the two instances of the class giving precedence to name and thickness
-        If Me.name.CompareTo(wpObj.getName()) <> 0 Then
-            Return Me.name.CompareTo(wpObj.getName())
-        ElseIf Me.thickness < wpObj.getThickness Then
+        Dim strObj As Storey
+        strObj = CType(obj, Storey)
+        '3. Compare the two instances of the class giving precedence to name, elevation and height
+        If Me.getName.CompareTo(strObj.getName()) <> 0 Then
+            Return Me.getName.CompareTo(strObj.getName())
+        ElseIf Me.getElevation < strObj.getElevation Then
             Return -1
-        ElseIf Me.thickness > wpObj.getThickness Then
+        ElseIf Me.getElevation > strObj.getElevation Then
             Return 1
         End If
         Return 0
@@ -120,18 +115,21 @@ Public Class WallProperty
         End If
 
         '2. Down-Cast the input object to the current class
-        Dim wpObj As WallProperty
-        wpObj = CType(obj, WallProperty)
+        Dim strObj As Storey
+        strObj = CType(obj, Storey)
 
-        '3. Check if attributes values are the same
-        If Me.name.Equals(wpObj.getName()) And
-            Me.matProp.Equals(wpObj.getMatProp()) And
-            Me.thickness = wpObj.getThickness() Then
+        '3. Check if the main attributes of the two objects are equal or not
+        If Me.getName.Equals(strObj.getName()) And
+                Me.getElevation = strObj.getElevation And
+                Me.getHeight = strObj.getHeight And
+                Me.getGuid.Equals(strObj.getGuid()) Then
             Return True
         Else
             Return False
         End If
 
     End Function
+
+
 
 End Class

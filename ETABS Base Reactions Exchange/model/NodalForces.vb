@@ -137,9 +137,7 @@
         'Determines and returns the Hashcode of the class instance as the number given by the sum 
         'of the hascodes/values of the most significant attributes of the class instance
         Dim hash As Integer
-        hash = Me.getElm.GetHashCode + Me.getObj.GetHashCode + Me.getF1.GetHashCode +
-               Me.getF2.GetHashCode + Me.getF3.GetHashCode + Me.getM1.GetHashCode +
-               Me.getM2.GetHashCode + Me.getM3.GetHashCode
+        hash = Me.numberResults + Me.obj.GetHashCode()
         Return hash
     End Function
 
@@ -157,13 +155,13 @@
         If Not obj.GetType().Equals(Me.GetType) Then
             Return Nothing
         End If
-        '2. Down-Cast the input Object to the PointReactions Class
-        Dim pReactObj As PointReactions
-        pReactObj = CType(obj, PointReactions)
+        '2. Down-Cast the input Object to the currentClass
+        Dim nForcesObj As NodalForces
+        nForcesObj = CType(obj, PointReactions)
         '3. Compare the two instances of the class giving precedence to the number of results
-        If (Me.getNumberResults > pReactObj.getNumberResults) Then
+        If (Me.getNumberResults > nForcesObj.getNumberResults) Then
             Return 1
-        ElseIf (Me.getNumberResults < pReactObj.getNumberResults) Then
+        ElseIf (Me.getNumberResults < nForcesObj.getNumberResults) Then
             Return -1
         End If
 
@@ -178,21 +176,21 @@
     'It has to be overwritten based on the values assigned to the attributes of the class instances
     Public Overrides Function Equals(obj As Object) As Boolean
 
-        '1. Check input Obj Data Type to match the PointObj Class
+        '1. Check input Obj Data Type to match the current Class
         If Not obj.GetType().Equals(Me.GetType) Then
             Return False
         End If
 
-        '2. Down-Cast the input object to the PointObj Class
-        Dim pReactObj As PointReactions
-        pReactObj = CType(obj, PointReactions)
+        '2. Down-Cast the input object to the current Class
+        Dim nForcesObj As NodalForces
+        nForcesObj = CType(obj, PointReactions)
 
         '3. Check if main attributes are equal
         ' - Note : Equals method has to be used to compare all attributes since they are all Arrays/Lists so...other 
         '   data structures...they're not primitive type objects!
-        If (Me.getElm.Equals(pReactObj.getElm) And Me.getObj.Equals(pReactObj.getObj) And
-           Me.getF1.Equals(pReactObj.getF1) And Me.getF2.Equals(pReactObj.getF2) And Me.getF3.Equals(pReactObj.getF3) And
-           Me.getM1.Equals(pReactObj.getM1) And Me.getM2.Equals(pReactObj.getM2) And Me.getM3.Equals(pReactObj.getM3)) Then
+        If (Me.getElm.Equals(nForcesObj.getElm) And Me.getObj.Equals(nForcesObj.getObj) And
+           Me.getF1.Equals(nForcesObj.getF1) And Me.getF2.Equals(nForcesObj.getF2) And Me.getF3.Equals(nForcesObj.getF3) And
+           Me.getM1.Equals(nForcesObj.getM1) And Me.getM2.Equals(nForcesObj.getM2) And Me.getM3.Equals(nForcesObj.getM3)) Then
             Return True
         Else
             Return False

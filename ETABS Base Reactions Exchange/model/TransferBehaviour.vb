@@ -3,10 +3,12 @@
 
     'ATTRIBUTES 
     Protected ret As Integer
+    Protected etabsModel As ETABSv1.cSapModel
 
     'CONSTRUCTOR
-    Public Sub New()
-
+    'Overloaded
+    Public Sub New(etabsModel As ETABSv1.cSapModel)
+        Me.etabsModel = etabsModel
     End Sub
 
     'METHODS

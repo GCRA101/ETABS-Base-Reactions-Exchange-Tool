@@ -80,7 +80,7 @@ Public Class ETABSConnector
     'Getters
 
     'GET ETABS APP
-    Public Function getEtabsApp()
+    Public Function getEtabsApp() As ETABSv1.cOAPI
         Return Me.ETABSApp
     End Function
 

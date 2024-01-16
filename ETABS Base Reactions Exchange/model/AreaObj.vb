@@ -1,7 +1,7 @@
 ﻿Imports ETABS_Base_Reactions_Exchange.model
 
 Public Class AreaObj
-    Implements IComparable
+    Inherits ETABSData
 
     'ATTRIBUTES
     Private name As String
@@ -83,7 +83,7 @@ Public Class AreaObj
     Public Overrides Function GetHashCode() As Integer
         'Determines and returns the Hashcode of the class instance as the integer number given 
         'by the sum of the hashcodes of the name and the corner points
-        Return Me.name.GetHashCode() '+ Me.getPoints().GetHashCode()
+        Return Me.name.GetHashCode() + Me.getPoints().GetHashCode()
     End Function
 
 
@@ -94,7 +94,7 @@ Public Class AreaObj
     'The method needs to be implemented accordingly with the criteria we want to use to define
     'which object is greater or smaller than the other based on the values assigned to its 
     'attributes.
-    Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
+    Public Overrides Function CompareTo(obj As Object) As Integer
         '1. Check input Obj Data Type to match the AreaObj Class
         If Not obj.GetType().Equals(Me.GetType) Then
             Return Nothing

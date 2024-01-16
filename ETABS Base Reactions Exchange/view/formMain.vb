@@ -36,9 +36,9 @@ Public Class formMain
     Private numDecimals As Integer                                                                                   'O(1)
 
     'ETABS OAPI Utility Variables
-    Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumberStories, sourceNumberGroups As Integer                  'O(1)
-    Dim targetLoadCasesNum, targetStoryNumNames, targetNumberStories, targetNumberGroups As Integer                  'O(1)
-    Dim selLoadCasesNum, selStoryNumNames, selNumberStories, selNumberGroups As Integer                              'O(1)
+    Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumStories, sourceNumGroups As Integer                  'O(1)
+    Dim targetLoadCasesNum, targetStoryNumNames, targetNumStories, targetNumGroups As Integer                  'O(1)
+    Dim selLoadCasesNum, selStoryNumNames, selNumStories, selNumGroups As Integer                              'O(1)
     Dim sourceLoadCaseName, sourceStoryName As String                                                                'O(1)
     Dim targetLoadCaseName, targetStoryName As String                                                                'O(1)
     Dim selLoadCaseName, selStoryName As String                                                                      'O(1)
@@ -177,7 +177,7 @@ Public Class formMain
 
         'EXTRACT STORY NAMES
 
-        ret = sourceEtabsModel.Story.GetStories(sourceNumberStories, sourceStoryNames, storyElevations,
+        ret = sourceEtabsModel.Story.GetStories(sourceNumStories, sourceStoryNames, storyElevations,
                                                 storyHeights, isMasterStory, similarToStory,
                                                 spliceAbove, spliceHeight)
 
@@ -192,7 +192,7 @@ Public Class formMain
         'EXTRACT GROUP NAMES
 
 
-        ret = sourceEtabsModel.GroupDef.GetNameList(sourceNumberGroups, sourceGroupNames)
+        ret = sourceEtabsModel.GroupDef.GetNameList(sourceNumGroups, sourceGroupNames)
 
         With Me.cklbGroups
             .CheckOnClick = True

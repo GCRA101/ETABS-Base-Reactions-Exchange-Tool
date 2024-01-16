@@ -88,14 +88,20 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\AreaDataSet.vb" />
+    <Compile Include="model\AreaObj.vb" />
     <Compile Include="model\AreaObjModifiers.vb" />
+    <Compile Include="model\AreaObjProperty.vb" />
+    <Compile Include="model\Color.vb" />
+    <Compile Include="model\ColorInterface.vb" />
     <Compile Include="model\DataTransfer.vb" />
     <Compile Include="model\ETABSConnection.vb" />
     <Compile Include="model\ETABSConnector.vb" />
-    <Compile Include="model\ETABSDataSet.vb" />
+    <Compile Include="model\ETABSData.vb" />
     <Compile Include="model\ETABSTransferrer.vb" />
     <Compile Include="model\FrameJointForces.vb" />
     <Compile Include="model\FrameObjModifiers.vb" />
+    <Compile Include="model\Group.vb" />
     <Compile Include="model\LoadCase.vb" />
     <Compile Include="model\LoadCaseModal.vb" />
     <Compile Include="model\LoadCaseModalEigen.vb" />
@@ -124,10 +130,13 @@
     <Compile Include="model\PullPointReactions.vb" />
     <Compile Include="model\PushBehaviour.vb" />
     <Compile Include="model\PushData.vb" />
+    <Compile Include="model\PushGroups.vb" />
     <Compile Include="model\PushLoadCases.vb" />
     <Compile Include="model\PushPointReactions.vb" />
     <Compile Include="model\ShellForces.vb" />
+    <Compile Include="model\Storey.vb" />
     <Compile Include="model\TransferBehaviour.vb" />
+    <Compile Include="model\WallProperty.vb" />
     <Compile Include="view\AboutBox.Designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
     </Compile>

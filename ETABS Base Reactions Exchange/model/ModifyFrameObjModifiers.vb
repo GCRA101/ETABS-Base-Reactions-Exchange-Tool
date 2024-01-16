@@ -27,7 +27,7 @@ Public Class ModifyFrameObjModifiers
     Public Overrides Sub modify()
 
         For Each frameObj As ETABSv1.cFrameObj In Me.frameObjects
-            ret = Me.etabsModel.FrameObj.SetModifiers(frameObj.getNaMe.objModifiers.getValues())
+            ret = Me.etabsModel.FrameObj.SetModifiers(frameObj.getName.objModifiers.getValues())
         Next
 
     End Sub

@@ -3,7 +3,7 @@
         Inherits PushBehaviour
 
         'ATTRIBUTES
-        Dim loadCases As LoadCase()
+        Dim loadCases As List(Of LoadCase)
 
         'CONSTRUCTOR
         'Overloaded 1
@@ -11,15 +11,20 @@
             MyBase.New(etabsModel)
         End Sub
         'Overloaded 2
-        Public Sub New(etabsModel As ETABSv1.cSapModel, loadCases As LoadCase())
+        Public Sub New(etabsModel As ETABSv1.cSapModel, loadCases As List(Of LoadCase))
             MyBase.New(etabsModel)
             Me.loadCases = loadCases
         End Sub
 
         'METHODS
 
+        'Setters
+        Public Sub setLoadCases(loadCases As List(Of LoadCase))
+            Me.loadCases = loadCases
+        End Sub
+
         'Push Method from PushData Interface
-        Public Overrides Sub push()
+        Public Overrides Sub push(Optional overwrite As Boolean = False)
             'Unlock ETABS Model
             ret = Me.etabsModel.SetModelIsLocked(False)
 
@@ -27,11 +32,19 @@
             Dim numNames As Integer, lcNames As String()
             ret = Me.etabsModel.LoadCases.GetNameList(numNames, lcNames)
 
+
             loadCases.Where(Function(lc)
-                                Return Not lcNames.Contains(lc.getLoadCaseName())
+                                If overwrite = False Then
+                                    Return Not lcNames.Contains(lc.getLoadCaseName())
+                                End If
                             End Function).
                             ToList.
                             ForEach(Function(lc)
+
+                                        If overwrite = True Then
+                                            ret = Me.etabsModel.LoadCases.Delete(lcNames.Where(Function(lcn) lcn.Contains(lc.getLoadCaseName())).ToString)
+                                        End If
+
                                         Select Case lc.GetType()
 
                                             Case GetType(LoadCaseStaticLinear)
@@ -95,6 +108,9 @@
                                     End Function)
 
         End Sub
+
+
+
     End Class
 
 
