@@ -5,7 +5,7 @@ Namespace model
         Inherits PushBehaviour
 
         'ATTRIBUTES
-        Dim loadCases As List(Of LoadCase)
+        Dim loadCaseNames As List(Of String)
         Dim storyNames, groupNames As List(Of String)
         Dim ppData As List(Of PointDataSet)
         Dim reactPointsGroupName As String = "Reaction Points"
@@ -28,19 +28,25 @@ Namespace model
 
 
         'METHODS
+
+
+        'Setters and Getters
+        Public Sub setPPData(ppData As List(Of PointDataSet))
+            Me.ppData = ppData
+        End Sub
+        Public Function getPPData() As List(Of PointDataSet)
+            Return Me.ppData
+        End Function
+
         Public Overrides Sub push(Optional overwrite As Boolean = False)
 
             '1. Unlock the ETABS Model
             ret = etabsModel.SetModelIsLocked(False)
 
-            '2 Push All Missing Load Cases
-            Dim pushLoadCases As New PushLoadCases(Me.etabsModel, Me.loadCases)
-            pushLoadCases.push(overwrite)
-
-            '3. Create Group to store Reaction Points in the ETABS Model
+            '2. Create Group to store Reaction Points in the ETABS Model
             createGroupForReactionPoints()
 
-            '4. Get List of Points at input stories
+            '3. Get List of Points at input stories
             Dim ppNumNames As Integer, ppNames As String()
             Dim ppNamesSelected As List(Of String)
 
@@ -54,7 +60,7 @@ Namespace model
                 Next
             End If
 
-            '5. Filter List of Points based on input groups
+            '4. Filter List of Points based on input groups
 
             If Not groupNames Is Nothing Then
                 For Each ppName As String In ppNamesSelected

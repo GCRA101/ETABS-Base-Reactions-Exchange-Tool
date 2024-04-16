@@ -24,6 +24,7 @@ Public Class Color
         Me.etabsIntValue = Me.getEtabsIntValue()
     End Sub
 
+
     'METHODS
 
     'Methods from implemented Interfaces
@@ -46,6 +47,11 @@ Public Class Color
     Public Function getEtabsIntValue() As Integer Implements ColorInterface.getEtabsIntValue
         Return CInt(Me.getRed()) + CInt(Me.getGreen()) * 256 + CInt(Me.getBlue()) * 256 * 256
     End Function
+
+    Public Sub setEtabsIntValue(etabsIntValue As Integer) Implements ColorInterface.setEtabsIntValue
+        Me
+    End Sub
+
 
 
     'HASHCODE

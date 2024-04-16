@@ -1,59 +1,55 @@
-﻿Public Class PointReactionsTransfer
+﻿Imports ETABS_Base_Reactions_Exchange.model
+
+Public Class PointReactionsTransfer
     Inherits TransferBehaviour
 
     'ATTRIBUTES
-    Private LoadCasesNames, StoryNames, GroupNames As String()
+    Private pullPointReactions As PullPointReactions
+    Private pushPointReactions As PushPointReactions
 
     'CONSTRUCTORS
+    'Overloaded 1
+    Public Sub New(sourceEtabsModel As ETABSv1.cSapModel, targetEtabsModel As ETABSv1.cSapModel)
+        MyBase.New(sourceEtabsModel, targetEtabsModel)
+    End Sub
+    'Overloaded 2
+    Public Sub New(sourceEtabsModel As ETABSv1.cSapModel, targetEtabsModel As ETABSv1.cSapModel,
+                   pullPointReactions As PullPointReactions, pushPointReactions As PushPointReactions)
+        'Call Constructor Overloaded 1
+        Me.New(sourceEtabsModel, targetEtabsModel)
+        'Assign Attributes
+        With Me
+            .pullPointReactions = pullPointReactions
+            .pushPointReactions = pushPointReactions
+        End With
+
+    End Sub
+
 
     'METHODS
 
-    Public Overrides Sub transfer()
+    'Setters and Getters
+    Public Sub setPullPointReactions(pullPointReactions As PullPointReactions)
+        Me.pullPointReactions = pullPointReactions
+    End Sub
+    Public Sub setPushPointReactions(pushPointReactions As PushPointReactions)
+        Me.pushPointReactions = pushPointReactions
+    End Sub
+    Public Function getPullPointReactions() As PullPointReactions
+        Return Me.pullPointReactions
+    End Function
+    Public Function getPushPointReactions() As PushPointReactions
+        Return Me.pushPointReactions
+    End Function
 
-        'Get the selected Load Cases
-        ReDim selLoadCasesNames(Me.cklbLoadCases.CheckedItems.Count - 1)
-        For i = 0 To (Me.cklbLoadCases.CheckedItems.Count - 1) Step 1
-            selLoadCasesNames(i) = CStr(Me.cklbLoadCases.CheckedItems(i))
-        Next
+    'Transfer
+    Public Overrides Sub transfer(Optional overwrite As Boolean = False)
 
-        'Get the selected Stories
-        ReDim selStoryNames(Me.cklbStories.CheckedItems.Count - 1)
-        For i = 0 To (Me.cklbStories.CheckedItems.Count - 1) Step 1
-            selStoryNames(i) = CStr(Me.cklbStories.CheckedItems(i))
-        Next
+        Dim pointReactions As IEnumerable(Of PointDataSet)
+        pointReactions = Me.pullPointReactions.pull()
 
-        'Get the selected Groups
-        ReDim selGroupNames(Me.cklbGroups.CheckedItems.Count - 1)
-        For i = 0 To (Me.cklbGroups.CheckedItems.Count - 1) Step 1
-            selGroupNames(i) = CStr(Me.cklbGroups.CheckedItems(i))
-        Next
-
-        'Set Load Cases to Run
-        ret = sourceEtabsModel.Analyze.SetRunCaseFlag("", False, True)
-        For Each selLoadCaseName In selLoadCasesNames
-            ret = sourceEtabsModel.Analyze.SetRunCaseFlag(selLoadCaseName, True)
-        Next
-
-        ret = sourceEtabsModel.Analyze.RunAnalysis
-
-
-
-        Dim ppX, ppY, ppZ As Double
-        Dim ppMatch As Boolean
-
-
-
-        etabsModel.InitializeNewModel()
-
-        ret = targetEtabsModel.File.OpenFile(targetFileName)
-
-        ret = targetEtabsModel.View.RefreshView
-
-
-
-        'CLOSE AND DISPOSE FORM
-        Me.Close()
-        Me.Dispose()
+        Me.pushPointReactions.setPPData(pointReactions)
+        Me.pushPointReactions.push(overwrite)
 
     End Sub
 

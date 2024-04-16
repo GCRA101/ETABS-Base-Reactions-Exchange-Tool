@@ -12,9 +12,6 @@
 
 
     'CONSTRUCTORS **********************************************************************************'
-    'Default
-    Public Sub New()
-    End Sub
     'Overloaded
     Public Sub New(sourceEtabsModel As ETABSv1.cSapModel, targetEtabsModel As ETABSv1.cSapModel)
         Me.sourceEtabsModel = sourceEtabsModel
@@ -60,7 +57,7 @@
 
 
     ' TRANSFER METHOD
-    Protected Overridable Sub transfer()
+    Public Overridable Sub transfer(Optional overwrite As Boolean = False)
     End Sub
 
 

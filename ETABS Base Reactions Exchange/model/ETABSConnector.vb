@@ -68,7 +68,7 @@ Public Class ETABSConnector
 
 
     ' SETETABSVISIBILITY() METHOD
-    Private Sub setEtabsVisibility(bool As Boolean) Implements ETABSConnection.setETABSVisibility
+    Public Sub setEtabsVisibility(bool As Boolean) Implements ETABSConnection.setETABSVisibility
         If bool = False Then
             ret = ETABSApp.Hide()
         Else

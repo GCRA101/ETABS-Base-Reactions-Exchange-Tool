@@ -11,6 +11,7 @@ Imports System.Threading
 Imports System.Net.Http.Headers
 Imports System.Net.Mime
 Imports System.ComponentModel
+Imports ETABS_Base_Reactions_Exchange.model
 
 ''' <summary>
 ''' IMPORTANT NOTES
@@ -36,6 +37,8 @@ Public Class formMain
     Private numDecimals As Integer                                                                                   'O(1)
 
     'ETABS OAPI Utility Variables
+    Dim sourceFileName, targetFileName As String
+    Dim sourceEtabsModel, targetEtabsModel As ETABSv1.cSapModel
     Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumStories, sourceNumGroups As Integer                  'O(1)
     Dim targetLoadCasesNum, targetStoryNumNames, targetNumStories, targetNumGroups As Integer                  'O(1)
     Dim selLoadCasesNum, selStoryNumNames, selNumStories, selNumGroups As Integer                              'O(1)
@@ -55,7 +58,6 @@ Public Class formMain
         SplashScreen.ShowDialog()
         AboutBox.ShowDialog()
         InitializeForm()
-        InitializeETABS()
     End Sub
 
 
@@ -101,10 +103,6 @@ Public Class formMain
     End Sub
 
 
-
-
-
-
     Private Sub InitializeForm()
 
         Me.cklbStories.Items.Clear()
@@ -142,49 +140,43 @@ Public Class formMain
 
     Private Sub extractDataSourceFile()
 
-        'Open ETABS Application
-        ret = ETABSApp.ApplicationStart()
+        With ETABSConnector.getInstance()
+            'Initialize ETABS Session
+            .initialize()
+            'Set ETABS to Invisible
+            .setEtabsVisibility(False)
+            'Open New ETABS Session
+            .getEtabsApp.ApplicationStart()
+            'Construct ETABS Model Object
+            sourceEtabsModel = .getEtabsApp.SapModel
+        End With
 
-        'Show/Hide ETABS Application
-        setEtabsVisibility()
+        With sourceEtabsModel
+            .InitializeNewModel()
+            .File.OpenFile(sourceFileName)
+            .View.RefreshView()
+        End With
 
+        Dim pullModelLoadCases As New PullLoadCases(sourceEtabsModel)
+        Dim loadCases As List(Of LoadCase)
+        loadCases = pullModelLoadCases.pull()
 
-        ''ETABS Model Object Variable
-        sourceEtabsModel = ETABSApp.SapModel                                                              'O(1)
-
-        sourceEtabsModel.InitializeNewModel()
-
-        ret = sourceEtabsModel.File.OpenFile(sourceFileName)
-
-        ret = sourceEtabsModel.View.RefreshView
-
-        ret = sourceEtabsModel.SetModelIsLocked(False)
-
-        ret = sourceEtabsModel.LoadCases.GetNameList(sourceLoadCasesNum, sourceLoadCasesNames)
 
         With Me.cklbLoadCases
             .CheckOnClick = True
-            .Items.AddRange(sourceLoadCasesNames)
+            .Items.AddRange(loadCases.Select(Of String)(Function(lcase) lcase.getLoadCaseName()).ToArray())
             .ClearSelected()
         End With
 
 
-
-        Dim similarToStory() As String
-        Dim isMasterStory() As Boolean
-        Dim storyElevations(), storyHeights(), spliceHeight() As Double
-        Dim sourceIsMasterStory(), spliceAbove() As Boolean
-
-        'EXTRACT STORY NAMES
-
-        ret = sourceEtabsModel.Story.GetStories(sourceNumStories, sourceStoryNames, storyElevations,
-                                                storyHeights, isMasterStory, similarToStory,
-                                                spliceAbove, spliceHeight)
+        Dim pullStoreys As New PullStoreys(sourceEtabsModel)
+        Dim storeys As List(Of Storey)
+        storeys = pullStoreys.pull()
 
         With Me.cklbStories
             .SelectionMode = SelectionMode.One
             .CheckOnClick = True
-            .Items.AddRange(sourceStoryNames)
+            .Items.AddRange(storeys.Select(Of String)(Function(storey) storey.getName()).ToArray())
             .ClearSelected()
         End With
 

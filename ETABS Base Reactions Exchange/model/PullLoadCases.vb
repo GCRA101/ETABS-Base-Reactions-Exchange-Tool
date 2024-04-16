@@ -27,8 +27,12 @@
         'Pull Method from PullData Interface
         Public Overrides Function pull() As IEnumerable(Of ETABSData)
 
-
             Dim loadCases As List(Of LoadCase)
+
+            If Me.loadCasesNames Is Nothing Then
+                Dim numNames As Integer
+                ret = Me.etabsModel.LoadCases.GetNameList(numNames, Me.loadCasesNames)
+            End If
 
             loadCases = Me.loadCasesNames.ToDictionary(Function(lcName) lcName, Function(lcName)
                                                                                     Dim loadCaseType As ETABSv1.eLoadCaseType

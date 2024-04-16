@@ -12,6 +12,7 @@ Public Interface ColorInterface
     Function getBlue() As Byte
     Function getRGB() As Byte()
     Function getEtabsIntValue() As Integer
+    Sub setEtabsIntValue(etabsIntValue As Integer)
 
 End Interface
 
