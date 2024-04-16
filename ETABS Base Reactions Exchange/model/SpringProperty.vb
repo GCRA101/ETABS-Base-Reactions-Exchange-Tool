@@ -1,5 +1,5 @@
 ﻿Public Class SpringProperty
-    Inherits ETABSData
+    Inherits ETABSProperty
 
     ' ATTRIBUTES  **********************************************************************
     Private name As String
@@ -55,12 +55,6 @@
     Public Sub setR3(r3 As Double)
         Me.r3 = r3
     End Sub
-    Public Sub setColor(color As ColorInterface)
-        Me.color = color
-    End Sub
-    Public Sub setDescription(description As String)
-        Me.description = description
-    End Sub
 
 
     'Getters
@@ -87,12 +81,6 @@
     End Function
     Public Function getR3() As Double
         Return Me.r3
-    End Function
-    Public Function getColor() As ColorInterface
-        Return Me.color
-    End Function
-    Public Function getDescription() As String
-        Return Me.description
     End Function
 
 
