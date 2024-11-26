@@ -24,6 +24,10 @@ Public Class Color
         Me.etabsIntValue = Me.getEtabsIntValue()
     End Sub
 
+    Public Sub New(etabsIntValue As Integer)
+        Me.etabsIntValue = etabsIntValue
+    End Sub
+
 
     'METHODS
 
@@ -49,7 +53,7 @@ Public Class Color
     End Function
 
     Public Sub setEtabsIntValue(etabsIntValue As Integer) Implements ColorInterface.setEtabsIntValue
-        Me
+        Me.etabsIntValue = etabsIntValue
     End Sub
 
 

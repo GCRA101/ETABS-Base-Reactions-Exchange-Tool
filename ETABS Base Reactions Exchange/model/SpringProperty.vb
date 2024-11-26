@@ -2,85 +2,38 @@
     Inherits ETABSProperty
 
     ' ATTRIBUTES  **********************************************************************
-    Private name As String
-    Private stiffnessValues As Double()
-    Private u1, u2, u3, r1, r2, r3 As Double
-    Private color As ColorInterface
-    Private description As String
+    Private springObject As SpringObject
 
 
     ' CONSTRUCTORS  ********************************************************************
-
+    'Default
+    Public Sub New()
+    End Sub
     'Overloaded 1
     Public Sub New(name As String)
-        Me.name = name
+        MyBase.New(name)
     End Sub
     'Overloaded 2
-    Public Sub New(name As String, stiffnessValues As Double())
+    Public Sub New(name As String, springObject As SpringObject)
         Me.New(name)
-        Me.stiffnessValues = stiffnessValues
+        Me.springObject = springObject
     End Sub
     'Overloaded 3
-    Public Sub New(name As String, stiffnessValues As Double(), color As ColorInterface)
-        Me.New(name, stiffnessValues)
+    Public Sub New(name As String, springObject As SpringObject, color As ColorInterface)
+        Me.New(name, springObject)
         Me.color = color
     End Sub
 
 
     ' METHODS *************************************************************************
 
-
-    'Setters
-    Public Sub setName(name As String)
-        Me.name = name
-    End Sub
-    Public Sub setStiffnessValues(stiffnessValues As Double())
-        Me.stiffnessValues = stiffnessValues
-    End Sub
-    Public Sub setU1(u1 As Double)
-        Me.u1 = u1
-    End Sub
-    Public Sub setU2(u2 As Double)
-        Me.u2 = u2
-    End Sub
-    Public Sub setU3(u3 As Double)
-        Me.u3 = u3
-    End Sub
-    Public Sub setR1(r1 As Double)
-        Me.r1 = r1
-    End Sub
-    Public Sub setR2(r2 As Double)
-        Me.r2 = r2
-    End Sub
-    Public Sub setR3(r3 As Double)
-        Me.r3 = r3
+    'Setters and Getters
+    Public Sub setSpringObject(springObject As SpringObject)
+        Me.springObject = springObject
     End Sub
 
-
-    'Getters
-    Public Function getName() As String
-        Return Me.name
-    End Function
-    Public Function getStiffnessValues() As Double()
-        Return Me.stiffnessValues
-    End Function
-    Public Function getU1() As Double
-        Return Me.u1
-    End Function
-    Public Function getU2() As Double
-        Return Me.u2
-    End Function
-    Public Function getU3() As Double
-        Return Me.u3
-    End Function
-    Public Function getR1() As Double
-        Return Me.r1
-    End Function
-    Public Function getR2() As Double
-        Return Me.r2
-    End Function
-    Public Function getR3() As Double
-        Return Me.r3
+    Public Function getSpringObject() As SpringObject
+        Return Me.springObject
     End Function
 
 
@@ -92,9 +45,9 @@
     'in whatever concrete implementation of the abstract data structure Hash Table.
     Public Overrides Function GetHashCode() As Integer
         'Determines and returns the Hashcode of the class instance as the number given by the sum 
-        'of the name's corresponding hashcode plus the integer sum of the stiffness values u1,u2,u3,r1,r2,r3.
+        'of the hashcodes of the name, the color and the wrapped spring object
         Dim hash As Integer
-        hash = Me.getName.GetHashCode + CInt(Me.u1 + Me.u2 + Me.u3 + Me.r1 + Me.r2 + Me.r3)
+        hash = Me.getName.GetHashCode + Me.color.GetHashCode() + Me.springObject.GetHashCode()
         Return hash
     End Function
 
@@ -113,17 +66,17 @@
             Return Nothing
         End If
         '2. Down-Cast the input Object to the SpringProperty Class
-        Dim spObj As SpringProperty
-        spObj = CType(obj, SpringProperty)
+        Dim spProp As SpringProperty
+        spProp = CType(obj, SpringProperty)
         '3. Compare the two instances of the class giving precedence to the name and then to the other attributes
-        If Me.name.GetHashCode > spObj.GetHashCode Then
+        If Me.name.GetHashCode > spProp.GetHashCode Then
             Return 1
-        ElseIf Me.name.GetHashCode < spObj.GetHashCode Then
+        ElseIf Me.name.GetHashCode < spProp.GetHashCode Then
             Return -1
         Else
-            If Me.stiffnessValues.Sum() < spObj.getStiffnessValues().Sum() Then
+            If Me.springObject.GetHashCode() < spProp.springObject.GetHashCode() Then
                 Return -1
-            ElseIf Me.stiffnessValues.Sum() > spObj.getStiffnessValues().Sum() Then
+            ElseIf Me.springObject.GetHashCode() > spProp.springObject.GetHashCode() Then
                 Return 1
             End If
         End If
@@ -144,12 +97,12 @@
         End If
 
         '2. Down-Cast the input Object to the SpringProperty Class
-        Dim spObj As SpringProperty
-        spObj = CType(obj, SpringProperty)
+        Dim spProp As SpringProperty
+        spProp = CType(obj, SpringProperty)
 
         '3. Check if all attributes and name of the two objects are equal or not
-        If Me.getName = spObj.getName And
-           Me.stiffnessValues Is spObj.getStiffnessValues() Then
+        If Me.getName = spProp.getName And
+           Me.springObject Is spProp.springObject Then
             Return True
         Else
             Return False

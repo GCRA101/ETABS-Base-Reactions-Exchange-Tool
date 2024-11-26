@@ -2,9 +2,9 @@
     Inherits ETABSData
 
     ' ATTRIBUTES **************************************************
-    Private name As String
-    Private color As ColorInterface
-    Private description As String
+    Protected name As String
+    Protected color As ColorInterface
+    Protected description As String
 
 
     ' CONSTRUCTORS ************************************************

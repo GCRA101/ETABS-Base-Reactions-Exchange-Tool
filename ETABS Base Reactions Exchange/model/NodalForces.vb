@@ -1,20 +1,8 @@
 ﻿Public Class NodalForces
-    Inherits ETABSData
+    Inherits PointResults
 
     'ATTRIBUTES **********************************************************
-    Protected Property numberResults As Integer
-    Protected Property obj As String()
-    Protected Property elm As String()
-    Protected Property loadCase As String()
-    Protected Property stepType As String()
-    Protected Property stepNum As Double()
-    Protected Property f1 As Double()
-    Protected Property f2 As Double()
-    Protected Property f3 As Double()
-    Protected Property m1 As Double()
-    Protected Property m2 As Double()
-    Protected Property m3 As Double()
-
+    Protected f1, f2, f3, m1, m2, m3 As Double()
 
 
     'CONSTRUCTOR ************************************************************
@@ -26,13 +14,10 @@
     Public Sub New(numRes As Integer, obj As String(), elm As String(), loadCase() As String,
                    stepType As String(), stepNum As Double(), f1 As Double(), f2 As Double(),
                    f3 As Double(), m1 As Double(), m2 As Double(), m3 As Double())
+
+        MyBase.New(numRes, obj, elm, loadCase, stepType, stepNum)
+
         With Me
-            .numberResults = numRes
-            .obj = obj
-            .elm = elm
-            .loadCase = loadCase
-            .stepType = stepType
-            .stepNum = stepNum
             .f1 = f1
             .f2 = f2
             .f3 = f3
@@ -49,24 +34,6 @@
     'GETTERS and SETTERS *********************
 
     'Setters
-    Public Sub setNumberResults(numberResults As Integer)
-        Me.numberResults = numberResults
-    End Sub
-    Public Sub setObj(obj As String())
-        Me.obj = obj
-    End Sub
-    Public Sub setElm(elm As String())
-        Me.elm = elm
-    End Sub
-    Public Sub setLoadCase(loadCase As String())
-        Me.loadCase = loadCase
-    End Sub
-    Public Sub setStepType(stepType As String())
-        Me.stepType = stepType
-    End Sub
-    Public Sub setStepNum(stepNum As Double())
-        Me.stepNum = stepNum
-    End Sub
     Public Sub setF1(f1 As Double())
         Me.f1 = f1
     End Sub
@@ -88,24 +55,6 @@
 
 
     'Getters
-    Public Function getNumberResults() As Integer
-        Return Me.numberResults
-    End Function
-    Public Function getObj() As String()
-        Return Me.obj
-    End Function
-    Public Function getElm() As String()
-        Return Me.elm
-    End Function
-    Public Function getLoadCases() As String()
-        Return Me.loadCase
-    End Function
-    Public Function getStepType() As String()
-        Return Me.stepType
-    End Function
-    Public Function getStepNum() As Double()
-        Return Me.stepNum
-    End Function
     Public Function getF1() As Double()
         Return Me.f1
     End Function
@@ -137,7 +86,7 @@
         'Determines and returns the Hashcode of the class instance as the number given by the sum 
         'of the hascodes/values of the most significant attributes of the class instance
         Dim hash As Integer
-        hash = Me.numberResults + Me.obj.GetHashCode()
+        hash = Me.numberResults + Me.obj.GetHashCode() + CInt(Me.f1.Average() + Me.m1.Average() + Me.f3.Average())
         Return hash
     End Function
 

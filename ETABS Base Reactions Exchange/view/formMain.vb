@@ -32,23 +32,23 @@ Public Class formMain
 
 
     'VARIABLES
-    Private i, j, k As Integer                                                                                       'O(1)
-    Private tolerance As Double                                                                                      'O(1)
-    Private numDecimals As Integer                                                                                   'O(1)
+    Private i, j, k As Integer
+    Private tolerance As Double
+    Private numDecimals As Integer
 
     'ETABS OAPI Utility Variables
     Dim sourceFileName, targetFileName As String
     Dim sourceEtabsModel, targetEtabsModel As ETABSv1.cSapModel
-    Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumStories, sourceNumGroups As Integer                  'O(1)
-    Dim targetLoadCasesNum, targetStoryNumNames, targetNumStories, targetNumGroups As Integer                  'O(1)
-    Dim selLoadCasesNum, selStoryNumNames, selNumStories, selNumGroups As Integer                              'O(1)
-    Dim sourceLoadCaseName, sourceStoryName As String                                                                'O(1)
-    Dim targetLoadCaseName, targetStoryName As String                                                                'O(1)
-    Dim selLoadCaseName, selStoryName As String                                                                      'O(1)
-    Dim sourceLoadCasesNames(), sourceStoryNames(), sourceGroupNames() As String                                     'O(1)
-    Dim targetLoadCasesNames(), targetStoryNames(), targetGroupNames() As String                                     'O(1)
-    Dim selLoadCasesNames(), selStoryNames(), selGroupNames() As String                                              'O(1)
-    Dim ReactPoints_GroupName As String                                                                              'O(1)
+    Dim sourceLoadCasesNum, sourceStoryNumNames, sourceNumStories, sourceNumGroups As Integer
+    Dim targetLoadCasesNum, targetStoryNumNames, targetNumStories, targetNumGroups As Integer
+    Dim selLoadCasesNum, selStoryNumNames, selNumStories, selNumGroups As Integer
+    Dim sourceLoadCaseName, sourceStoryName As String
+    Dim targetLoadCaseName, targetStoryName As String
+    Dim selLoadCaseName, selStoryName As String
+    Dim sourceLoadCasesNames(), sourceStoryNames(), sourceGroupNames() As String
+    Dim targetLoadCasesNames(), targetStoryNames(), targetGroupNames() As String
+    Dim selLoadCasesNames(), selStoryNames(), selGroupNames() As String
+    Dim ReactPoints_GroupName As String
 
 
     Dim xCoord, yCoord As Integer
@@ -183,8 +183,7 @@ Public Class formMain
 
         'EXTRACT GROUP NAMES
 
-
-        ret = sourceEtabsModel.GroupDef.GetNameList(sourceNumGroups, sourceGroupNames)
+        sourceEtabsModel.GroupDef.GetNameList(sourceNumGroups, sourceGroupNames)
 
         With Me.cklbGroups
             .CheckOnClick = True

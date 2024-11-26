@@ -30,12 +30,16 @@ Public Class PullGroups
 
         groupNames.Select(Of Group)(Function(grpName)
                                         Dim colorInt As Integer
-                                        Me.etabsModel.GroupDef.GetGroup_1(grpName, colorInt, sfSelection)
-                                        Return (New Group(grpName, ))
+                                        Dim sfSelection, sfSectionCutDefinition, sfSteelDesign, sfConcreteDesign, sfAluminumDesign As Boolean
+                                        Dim sfStaticNLActiveStage, sfAutoSeismicOutput, sfAutoWindOutput, sfMassAndWeight As Boolean
+                                        Dim sfSteelJoistDesign, sfWallDesign, sfBasePlateDesign, sfConnectionDesign As Boolean
+                                        Me.etabsModel.GroupDef.GetGroup_1(grpName, colorInt, sfSelection, sfSectionCutDefinition, sfSteelDesign,
+                                                                          sfConcreteDesign, sfAluminumDesign, sfStaticNLActiveStage, sfAutoSeismicOutput,
+                                                                          sfAutoWindOutput, sfMassAndWeight, sfSteelJoistDesign, sfWallDesign, sfBasePlateDesign,
+                                                                          sfConnectionDesign)
+                                        Return (New Group(grpName, New Color(colorInt)))
                                     End Function)
-
-
-
-
     End Function
+
+
 End Class

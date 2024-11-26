@@ -4,18 +4,39 @@ Namespace model
         Inherits ETABSData
 
         'ATTRIBUTES *****************************************************************************
-        Private Property point As PointObj
-        Private Property reactions As PointReactions
+        Private point As PointObj
+        Private reactions As PointReactions
+        Private displacements As PointDisplacements
+        Private springProperty As SpringProperty
+
 
 
         'CONSTRUCTOR *****************************************************************************
         'Default Constructor
         Public Sub New()
         End Sub
-        'Overloaded Constructor 
+        'Overloaded Constructor 01
         Public Sub New(point As PointObj, reactions As PointReactions)
             Me.point = point
             Me.reactions = reactions
+        End Sub
+        'Overloaded Constructor 02
+        Public Sub New(point As PointObj, springProperty As SpringProperty)
+            Me.point = point
+            Me.springProperty = springProperty
+        End Sub
+        'Overloaded Constructor 03
+        Public Sub New(point As PointObj, reactions As PointReactions, displacements As PointDisplacements)
+            Me.point = point
+            Me.reactions = reactions
+            Me.displacements = displacements
+        End Sub
+        'Overloaded Constructor 04
+        Public Sub New(point As PointObj, reactions As PointReactions, displacements As PointDisplacements, springProperty As SpringProperty)
+            Me.point = point
+            Me.reactions = reactions
+            Me.displacements = displacements
+            Me.springProperty = springProperty
         End Sub
 
 
@@ -30,14 +51,25 @@ Namespace model
         Public Sub setReactions(reactions As PointReactions)
             Me.reactions = reactions
         End Sub
+        Public Sub setDisplacements(displacements As PointDisplacements)
+            Me.displacements = displacements
+        End Sub
+        Public Sub setSpringProperty(springProperty As SpringProperty)
+            Me.springProperty=springProperty
+        End Sub
 
         'Getters
         Public Function getPoint() As PointObj
             Return Me.point
         End Function
-
         Public Function getReactions() As PointReactions
             Return Me.reactions
+        End Function
+        Public Function getDisplacements() As PointDisplacements
+            Return Me.displacements
+        End Function
+        Public Function getSpringProperty() As SpringProperty
+            Return Me.springProperty
         End Function
 
 
@@ -49,9 +81,9 @@ Namespace model
         'in whatever concrete implementation of the abstract data structure Hash Table.
         Public Overrides Function GetHashCode() As Integer
             'Determines and returns the Hashcode of the class instance as the integer number given 
-            'by the sum of the hashcodes of the point and reactions attributes respectively.
+            'by the sum of the hashcodes of the point and of all other attributes.
             Dim hash As Integer
-            hash = Me.getPoint.GetHashCode + Me.getReactions.GetHashCode
+            hash = Me.point.GetHashCode + Me.reactions.GetHashCode + Me.displacements.GetHashCode + Me.springProperty.GetHashCode
             Return hash
         End Function
 
@@ -72,13 +104,18 @@ Namespace model
             '2. Down-Cast the input Object to the PointObjClass
             Dim pdsObj As PointDataSet
             pdsObj = CType(obj, PointDataSet)
-            '3. Compare the two instances of the class giving precedence to the point attribute and then reactions
-            If (Me.getPoint.CompareTo(pdsObj.getPoint) <> 0) Then
-                Return Me.getPoint.CompareTo(pdsObj.getPoint)
-            ElseIf Me.getReactions.CompareTo(pdsObj.getReactions) <> 0 Then
-                Return Me.getReactions.CompareTo(pdsObj.getReactions)
+            '3. Compare the two instances of the class giving precedence to the point attribute 
+            '   and then other attributes
+            If (Me.point.CompareTo(pdsObj.getPoint) <> 0) Then
+                Return Me.point.CompareTo(pdsObj.getPoint)
+            ElseIf Me.reactions.CompareTo(pdsObj.getReactions) <> 0 Then
+                Return Me.reactions.CompareTo(pdsObj.getReactions)
+            ElseIf Me.displacements.CompareTo(pdsObj.getDisplacements) <> 0 Then
+                Return Me.displacements.CompareTo(pdsObj.getDisplacements)
+            ElseIf Me.springProperty.CompareTo(pdsObj.getSpringProperty) <> 0 Then
+                Return Me.springProperty.CompareTo(pdsObj.getSpringProperty)
             End If
-
+			
             Return 0
         End Function
 
@@ -99,8 +136,11 @@ Namespace model
             Dim pdsObj As PointDataSet
             pdsObj = CType(obj, PointDataSet)
 
-            '3. Check if point and reactions of the two class instances are equal or not
-            If Me.getPoint.Equals(pdsObj.getPoint) And Me.getReactions.Equals(pdsObj.getReactions) Then
+            '3. Check if point and other attributes of the two class instances are equal or not
+            If Me.getPoint.Equals(pdsObj.getPoint) And
+               Me.getReactions.Equals(pdsObj.getReactions) And
+               Me.getDisplacements.Equals(pdsObj.getDisplacements) And
+               Me.getSpringProperty.Equals(pdsObj.getSpringProperty) Then
                 Return True
             End If
 

@@ -24,7 +24,7 @@
     Public Overrides Sub modify()
         'Flick through all the area objects and assign to each of them the set of stiffness modifiers
         For Each areaObj As ETABSv1.cAreaObj In Me.areaObjects
-            Me.etabsModel.AreaObj.SetModifiers(Me.objModifiers.getValues())
+            Me.etabsModel.AreaObj.SetModifiers(Me.objModifiers.getName(), Me.objModifiers.getValues())
         Next
 
     End Sub

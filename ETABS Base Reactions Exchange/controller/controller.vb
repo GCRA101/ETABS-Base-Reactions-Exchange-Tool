@@ -28,10 +28,6 @@ Namespace controller
 
             Dim controller As Controller = New Controller()
 
-
-
-
-
         End Sub
 
     End Class

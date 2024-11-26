@@ -73,7 +73,7 @@ Namespace model
             End If
 
             ' *************** USE THE OBSERVER PATTERN!!! ***********************
-            Dim progrBarStep As Integer = (Me.progrBar.Maximum - Me.progrBar.Minimum) \ baseJointsData.Count
+            'Dim progrBarStep As Integer = (Me.progrBar.Maximum - Me.progrBar.Minimum) \ baseJointsData.Count
 
             Dim ppMatch As Boolean
             Dim ppX, ppY, ppZ As Double
@@ -117,16 +117,16 @@ Namespace model
                     End If
                 Next
 
-                Me.progrBar.Increment(progrBarStep)
-                Me.Refresh()
+                'Me.progrBar.Increment(progrBarStep)
+                'Me.Refresh()
 
             Next
 
 
-            Me.lblProgrBar.Text = "Transfer Completed!"
-            Me.Refresh()
+            'Me.lblProgrBar.Text = "Transfer Completed!"
+            'Me.Refresh()
 
-            Me.etabsModel.File.Save(setNewFilePath(targetFileName))
+            'Me.etabsModel.File.Save(setNewFilePath(targetFileName))
 
 
         End Sub

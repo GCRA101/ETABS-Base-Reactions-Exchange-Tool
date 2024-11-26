@@ -98,6 +98,7 @@
     <Compile Include="model\ETABSConnection.vb" />
     <Compile Include="model\ETABSConnector.vb" />
     <Compile Include="model\ETABSData.vb" />
+    <Compile Include="model\ETABSProperty.vb" />
     <Compile Include="model\ETABSTransferrer.vb" />
     <Compile Include="model\FrameJointForces.vb" />
     <Compile Include="model\FrameObjModifiers.vb" />
@@ -117,15 +118,18 @@
     <Compile Include="model\ModifyData.vb" />
     <Compile Include="model\ModifyFrameObjModifiers.vb" />
     <Compile Include="model\ModifyObjModifiers.vb" />
+    <Compile Include="model\NodalDisplacements.vb" />
     <Compile Include="model\NodalForces.vb" />
     <Compile Include="model\ObjModifiers.vb" />
     <Compile Include="model\Observable.vb" />
     <Compile Include="model\Observer.vb" />
     <Compile Include="model\PointDataSet.vb" />
+    <Compile Include="model\PointDisplacements.vb" />
     <Compile Include="model\PointObj.vb" />
     <Compile Include="model\PointReactions.vb" />
     <Compile Include="model\PointReactionsTransfer.vb" />
     <Compile Include="model\PointReactionsTransferrer.vb" />
+    <Compile Include="model\PointResults.vb" />
     <Compile Include="model\PullBehaviour.vb" />
     <Compile Include="model\PullData.vb" />
     <Compile Include="model\PullGroups.vb" />
@@ -138,6 +142,8 @@
     <Compile Include="model\PushLoadCases.vb" />
     <Compile Include="model\PushPointReactions.vb" />
     <Compile Include="model\ShellForces.vb" />
+    <Compile Include="model\SpringObject.vb" />
+    <Compile Include="model\SpringProperty.vb" />
     <Compile Include="model\Storey.vb" />
     <Compile Include="model\TransferBehaviour.vb" />
     <Compile Include="model\WallProperty.vb" />
