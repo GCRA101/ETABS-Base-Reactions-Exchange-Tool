@@ -88,6 +88,7 @@ Public Class formMain
     Private Sub btnOpenSourceFile_Click(sender As Object, e As EventArgs) Handles btnOpenSourceFile.Click
 
         sourceFileName = getSelectedFile("Select Source Etabs File")
+        InitializeETABS()
         extractDataSourceFile()
 
         If ((sourceFileName <> "")) Then
