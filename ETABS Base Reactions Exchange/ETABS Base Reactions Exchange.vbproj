@@ -54,14 +54,17 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSiAPIv1">
-      <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 20\CSiAPIv1.dll</HintPath>
+    <Reference Include="CSiAPIv1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8a93c9e72eabf762, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 22\CSiAPIv1.dll</HintPath>
     </Reference>
-    <Reference Include="CSiDetailAPI">
-      <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 20\CSiDetailAPI.dll</HintPath>
+    <Reference Include="CSiDetailAPI, Version=18.3.0.0, Culture=neutral, PublicKeyToken=31c6dd317f378044, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 22\CSiDetailAPI.dll</HintPath>
     </Reference>
-    <Reference Include="ETABSv1">
-      <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 20\ETABSv1.dll</HintPath>
+    <Reference Include="ETABSv1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=453d728ef24c6f5e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 22\ETABSv1.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
