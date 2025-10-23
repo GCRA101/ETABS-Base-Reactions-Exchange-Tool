@@ -1,4 +1,6 @@
-﻿Imports System.IO
+﻿' formMain: main UI for selecting ETABS source/target and running the reactions transfer
+
+Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Security.Cryptography.X509Certificates
 Imports System.Text.RegularExpressions
@@ -58,6 +60,7 @@ Public Class formMain
     Dim xCoord, yCoord As Integer
 
 
+    ' Form load: show splash/about, initialize UI and ETABS helper objects
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SplashScreen.ShowDialog()
         AboutBox.ShowDialog()
@@ -66,12 +69,14 @@ Public Class formMain
     End Sub
 
 
+    ' Position the main form at the center of the screen
     Private Sub setFormLocation()
         xCoord = Screen.PrimaryScreen.Bounds.Width / 2 - Me.Width / 2
         yCoord = Screen.PrimaryScreen.Bounds.Height / 2 - Me.Height / 2
         Me.SetDesktopLocation(xCoord, yCoord)
     End Sub
 
+    ' Start transfer: update UI and call transfer routine
     Private Sub btnTransferReactions_Click(sender As Object, e As EventArgs) Handles btnTransferReactions.Click
         Me.lblProgrBar.Text = "Transfer in Progress..."
         Me.lblProgrBar.Visible = True
@@ -80,11 +85,13 @@ Public Class formMain
         runTransfer()
     End Sub
 
+    ' Update tolerance value when selection changes
     Private Sub lbTolerance_SelectedIndexChanged(sender As Object, e As EventArgs)
         tolerance = CDbl(Me.cbTolerances.SelectedItem)
     End Sub
 
 
+    ' Browse and open source ETABS file, initialize ETABS and extract data
     Private Sub btnOpenSourceFile_Click(sender As Object, e As EventArgs) Handles btnOpenSourceFile.Click
 
         sourceFileName = getSelectedFile("Select Source Etabs File")
@@ -98,6 +105,7 @@ Public Class formMain
 
     End Sub
 
+    ' Browse target file and enable transfer button when both files selected
     Private Sub btnOpenTargetFile_Click(sender As Object, e As EventArgs) Handles btnOpenTargetFile.Click
 
         targetFileName = getSelectedFile("Select Target Etabs File")
@@ -109,7 +117,7 @@ Public Class formMain
     End Sub
 
 
-
+    ' Initialize ETABS helper and create or obtain the ETABS application COM object
     Private Sub InitializeETABS()
 
         'ETABS OAPI Variables Assignment
@@ -125,6 +133,7 @@ Public Class formMain
     End Sub
 
 
+    ' Initialize UI controls and defaults
     Private Sub InitializeForm()
 
         Me.cklbStories.Items.Clear()
@@ -137,6 +146,7 @@ Public Class formMain
 
     End Sub
 
+    ' Toggle ETABS visibility (hidden by default)
     Private Sub setEtabsVisibility()
         If Not etabsVisibility Then
             ret = ETABSApp.Hide()
@@ -144,6 +154,7 @@ Public Class formMain
     End Sub
 
 
+    ' Open file dialog helper that returns selected file path or empty string
     Private Function getSelectedFile(dialogTitle As String) As String
 
         Dim fileName As String = Nothing
@@ -164,6 +175,7 @@ Public Class formMain
     End Function
 
 
+    ' Generate a new file path for saving results with date prefix
     Private Function setNewFilePath(filePath As String) As String
         Dim newFilePath As String
         Dim dateObj As Date = Date.Today
@@ -181,6 +193,7 @@ Public Class formMain
     End Function
 
 
+    ' Extract data from source ETABS model: start app, open model and populate UI lists
     Private Sub extractDataSourceFile()
 
         'Open ETABS Application
@@ -201,6 +214,7 @@ Public Class formMain
 
         ret = sourceEtabsModel.SetModelIsLocked(False)
 
+        ' Populate load cases list
         ret = sourceEtabsModel.LoadCases.GetNameList(sourceLoadCasesNum, sourceLoadCasesNames)
 
         With Me.cklbLoadCases
@@ -210,14 +224,13 @@ Public Class formMain
         End With
 
 
-
         Dim similarToStory() As String
         Dim isMasterStory() As Boolean
         Dim storyElevations(), storyHeights(), spliceHeight() As Double
         Dim sourceIsMasterStory(), spliceAbove() As Boolean
 
         'EXTRACT STORY NAMES
-
+        ' Populate story names list
         ret = sourceEtabsModel.Story.GetStories(sourceNumberStories, sourceStoryNames, storyElevations,
                                                 storyHeights, isMasterStory, similarToStory,
                                                 spliceAbove, spliceHeight)
@@ -231,8 +244,7 @@ Public Class formMain
 
 
         'EXTRACT GROUP NAMES
-
-
+        ' Populate groups list
         ret = sourceEtabsModel.GroupDef.GetNameList(sourceNumberGroups, sourceGroupNames)
 
         With Me.cklbGroups
@@ -242,10 +254,10 @@ Public Class formMain
         End With
 
 
-
     End Sub
 
 
+    ' Create or reset a named group for the reaction points in target model
     Private Sub createGroupForReactionPoints()
 
         'Variables Declaration
@@ -297,6 +309,7 @@ Public Class formMain
     End Sub
 
 
+    ' Ensure load cases present on target model match selected source cases
     Private Sub pushMissingLoadCases(loadCasesNames As String())
 
         Dim lcNum As Integer
@@ -319,6 +332,7 @@ Public Class formMain
     End Sub
 
 
+    ' Core transfer routine: collect reactions from source and apply to target model
     Private Sub runTransfer()
 
         'Get the selected Load Cases
@@ -348,7 +362,7 @@ Public Class formMain
         ret = sourceEtabsModel.Analyze.RunAnalysis
 
 
-
+        'Prepare data structures for pulling joint reactions
         Dim baseJointsData As model.JointData()
 
         Dim Name As String
@@ -366,7 +380,7 @@ Public Class formMain
         Dim targetppNamesByStoryList As List(Of String()) = New List(Of String())
         Dim sourcePPNamesByStoryList As List(Of String()) = New List(Of String())
 
-
+        ' Collect point names by selected story from source model
         For Each selStoryName In selStoryNames
             ret = sourceEtabsModel.PointObj.GetNameListOnStory(selStoryName, ppNumberNames, ppNames)
             sourcePPNamesByStoryList.Add(ppNames)
@@ -377,7 +391,7 @@ Public Class formMain
         Dim groupFound As Boolean
         Dim ppNamesByGroupList As List(Of String) = New List(Of String)
 
-
+        ' Filter points by selected groups
         For Each dataRow As String() In sourcePPNamesByStoryList
             For Each ppName In dataRow
                 ret = sourceEtabsModel.PointObj.GetGroupAssign(ppName, numGroups, ppGroups)
@@ -401,8 +415,10 @@ Public Class formMain
         ppNumberNames = ppNamesByGroupList.Count
         ppNames = ppNamesByGroupList.ToArray()
 
+        ' Allocate array for collected joint data
         ReDim baseJointsData(ppNumberNames - 1)
 
+        ' Configure results extraction
         ret = sourceEtabsModel.Results.Setup.DeselectAllCasesAndCombosForOutput
 
 
@@ -410,6 +426,7 @@ Public Class formMain
             ret = sourceEtabsModel.Results.Setup.SetCaseSelectedForOutput(selLoadCaseName, True)
         Next
 
+        ' Pull reaction results for each point and store in JointData objects
         For i = 0 To UBound(ppNames) Step 1
             ret = sourceEtabsModel.Results.JointReact(ppNames(i), ItemTypeElm, NumberResults, Obj, Elm, LoadCase,
                                              StepType, StepNum, F1, F2, F3, M1, M2, M3)
@@ -439,6 +456,7 @@ Public Class formMain
 
         Next
 
+        ' Open target model and prepare it for receiving reactions
         targetEtabsModel = ETABSApp.SapModel
 
         targetEtabsModel.InitializeNewModel()
@@ -450,10 +468,12 @@ Public Class formMain
         ret = targetEtabsModel.SetModelIsLocked(False)
 
 
+        ' Ensure load cases and groups exist on target
         pushMissingLoadCases(selLoadCasesNames)
 
         createGroupForReactionPoints()
 
+        ' Gather point names on target by story
         For Each selStoryName In selStoryNames
             ret = targetEtabsModel.PointObj.GetNameListOnStory(selStoryName, ppNumberNames, ppNames)
             targetppNamesByStoryList.Add(ppNames)
@@ -461,6 +481,7 @@ Public Class formMain
 
         Dim progrBarStep As Integer = (Me.progrBar.Maximum - Me.progrBar.Minimum) \ baseJointsData.Count
 
+        ' For each collected joint, try to match on coordinates and set loads on target points
         For Each bjd As model.JointData In baseJointsData
             For Each dataRow As String() In targetppNamesByStoryList
                 For i = 0 To dataRow.Count - 1 Step 1
@@ -485,6 +506,7 @@ Public Class formMain
                     End If
                 Next
 
+                ' If no match found, add a new point and assign loads and group
                 If ppMatch = False Then
                     Dim ppNewName As String = bjd.getName + "0000"
                     ret = targetEtabsModel.PointObj.AddCartesian(bjd.getX, bjd.getY, bjd.getZ, ppNewName)
