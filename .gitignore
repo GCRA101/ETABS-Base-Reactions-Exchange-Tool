@@ -1,3 +1,64 @@
-*.vsidx*
-*.pdb*
-*.exe*
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files
+
+# Build results
+[Bb]in/
+[Oo]bj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sdf
+*.dbmdl
+*.pidb
+*.psess
+*.vsp
+*.vsix
+*.ncb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio Code workspace settings
+.vscode/
+
+# Visual Studio working folder
+.vs/
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# ASP.NET temporary files
+App_Data/
+App_Start/
+App_Code/
+
+# Publish output
+publish/
+*.Publish.xml
+
+# Others
+_ReSharper*/
+*.DotSettings.user
+.idea/
+*.sln.ide
+
+# Backup files
+*.bak
+*.orig
+*.tmp
