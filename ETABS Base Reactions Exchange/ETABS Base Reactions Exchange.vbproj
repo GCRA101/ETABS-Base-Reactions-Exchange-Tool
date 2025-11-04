@@ -57,14 +57,17 @@
     <Reference Include="CSiAPIv1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8a93c9e72eabf762, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 22\CSiAPIv1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CSiDetailAPI, Version=18.3.0.0, Culture=neutral, PublicKeyToken=31c6dd317f378044, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 22\CSiDetailAPI.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ETABSv1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=453d728ef24c6f5e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Computers and Structures\ETABS 22\ETABSv1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -164,9 +167,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BREEtabsBHE.ico" />
+    <EmbeddedResource Include="docs\AboutBoxDescription.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="docs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

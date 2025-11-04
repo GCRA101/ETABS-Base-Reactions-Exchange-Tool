@@ -22,7 +22,50 @@ Public NotInheritable Class AboutBox
         Me.lblCopyRight.Text = My.Application.Info.Copyright
         Me.lblCompanyName.Text = My.Application.Info.CompanyName
         'Me.txtDescription.Text = My.Application.Info.Description
-        Me.txtDescription.Text = System.IO.File.ReadAllText(My.Application.Info.DirectoryPath.Replace("\bin\Debug", "") + "\docs\" + "AboutBoxDescription.txt")
+
+        ' Attempt to read AboutBoxDescription.txt from embedded resources first,
+        ' otherwise search upward from the application directory for a docs folder.
+        Try
+            Dim assembly = System.Reflection.Assembly.GetExecutingAssembly()
+            Dim resourceName As String = Nothing
+            For Each n In assembly.GetManifestResourceNames()
+                If n.EndsWith("AboutBoxDescription.txt", StringComparison.OrdinalIgnoreCase) Then
+                    resourceName = n
+                    Exit For
+                End If
+            Next
+
+            If resourceName IsNot Nothing Then
+                Using stream = assembly.GetManifestResourceStream(resourceName)
+                    If stream IsNot Nothing Then
+                        Using reader As New System.IO.StreamReader(stream)
+                            Me.txtDescription.Text = reader.ReadToEnd()
+                        End Using
+                    Else
+                        Me.txtDescription.Text = String.Empty
+                    End If
+                End Using
+            Else
+                ' Fallback: search parent directories for a "docs\AboutBoxDescription.txt" file
+                Dim dir As String = My.Application.Info.DirectoryPath
+                Dim found As Boolean = False
+                For i As Integer = 0 To 6
+                    Dim candidate = System.IO.Path.Combine(dir, "docs", "AboutBoxDescription.txt")
+                    If System.IO.File.Exists(candidate) Then
+                        Me.txtDescription.Text = System.IO.File.ReadAllText(candidate)
+                        found = True
+                        Exit For
+                    End If
+                    dir = System.IO.Path.GetDirectoryName(dir)
+                    If String.IsNullOrEmpty(dir) Then Exit For
+                Next
+                If Not found Then
+                    Me.txtDescription.Text = String.Empty
+                End If
+            End If
+        Catch ex As Exception
+            Me.txtDescription.Text = String.Empty
+        End Try
 
 
         ' Compute center position and move dialog to screen center
