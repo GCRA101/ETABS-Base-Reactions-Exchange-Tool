@@ -1,13 +1,16 @@
-﻿Imports System.Threading
+﻿'SplashScreen: brief startup splash displayed before main form loads
+Imports System.Threading
 
 Public NotInheritable Class SplashScreen
 
     'TODO: This form can easily be set as the splash screen for the application by going to the "Application" tab
     '  of the Project Designer ("Properties" under the "Project" menu).
 
+    ' Centering coordinates
     Private xCoord, yCoord As Integer
 
 
+    ' Initialize splash content and show for a short delay
     Private Sub SplashScreen1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Set up the dialog text at runtime according to the application's assembly information.  
 
@@ -30,6 +33,7 @@ Public NotInheritable Class SplashScreen
         '
         '    Version.Text = System.String.Format(Version.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision)
 
+        ' Populate version and copyright/company info
         lblVersion.Text = System.String.Format(lblVersion.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor)
 
         'Copyright info
@@ -38,11 +42,13 @@ Public NotInheritable Class SplashScreen
         'Company Info
         lblCompany.Text = My.Application.Info.CompanyName
 
+        ' Center the splash on screen
         xCoord = Screen.PrimaryScreen.Bounds.Width / 2 - Me.Width / 2
         yCoord = Screen.PrimaryScreen.Bounds.Height / 2 - Me.Height / 2
 
         Me.SetDesktopLocation(xCoord, yCoord)
 
+        ' Display briefly and close
         Me.Visible = True
         Me.Refresh()
 

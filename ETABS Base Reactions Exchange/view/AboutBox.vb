@@ -1,7 +1,10 @@
-﻿Public NotInheritable Class AboutBox
+﻿' AboutBox: dialog showing product/version/company info
+Public NotInheritable Class AboutBox
 
+    ' Centering coordinates for the dialog
     Private xCoord, yCoord As Integer
 
+    ' Initialize and populate AboutBox controls on load
     Private Sub AboutBox_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Set the title of the form.
         Dim ApplicationTitle As String
@@ -22,6 +25,7 @@
         Me.txtDescription.Text = System.IO.File.ReadAllText(My.Application.Info.DirectoryPath.Replace("\bin\Debug", "") + "\docs\" + "AboutBoxDescription.txt")
 
 
+        ' Compute center position and move dialog to screen center
         xCoord = Screen.PrimaryScreen.Bounds.Width / 2 - Me.Width / 2
         yCoord = Screen.PrimaryScreen.Bounds.Height / 2 - Me.Height / 2
 
@@ -31,14 +35,14 @@
 
     End Sub
 
-
+    ' Handle dialog closed event; ensure application exits if dialog was visible
     Private Sub AboutBox_Closing(sender As Object, e As EventArgs) Handles Me.Closed
         If Me.Visible = True Then
             End
         End If
     End Sub
 
-
+    ' OK button closes dialog and returns to main form
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         Me.Close()
         Me.Dispose()
