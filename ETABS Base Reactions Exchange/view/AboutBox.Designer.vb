@@ -49,7 +49,8 @@ Partial Class AboutBox
         Me.TableLayoutPanel1.Controls.Add(Me.lblProductName, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.lblCopyRight, 1, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.txtDescription, 0, 4)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(2, 2)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 2)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 6
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5!))
@@ -58,7 +59,7 @@ Partial Class AboutBox
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(461, 427)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(615, 526)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'lblCompanyName
@@ -67,10 +68,10 @@ Partial Class AboutBox
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCompanyName.AutoSize = True
-        Me.lblCompanyName.Location = New System.Drawing.Point(150, 96)
+        Me.lblCompanyName.Location = New System.Drawing.Point(201, 117)
         Me.lblCompanyName.Margin = New System.Windows.Forms.Padding(0)
         Me.lblCompanyName.Name = "lblCompanyName"
-        Me.lblCompanyName.Size = New System.Drawing.Size(311, 32)
+        Me.lblCompanyName.Size = New System.Drawing.Size(414, 39)
         Me.lblCompanyName.TabIndex = 6
         Me.lblCompanyName.Text = "Company Name: "
         Me.lblCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -81,10 +82,10 @@ Partial Class AboutBox
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblVersion.AutoSize = True
-        Me.lblVersion.Location = New System.Drawing.Point(150, 32)
+        Me.lblVersion.Location = New System.Drawing.Point(201, 39)
         Me.lblVersion.Margin = New System.Windows.Forms.Padding(0)
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(311, 32)
+        Me.lblVersion.Size = New System.Drawing.Size(414, 39)
         Me.lblVersion.TabIndex = 5
         Me.lblVersion.Text = "Version: "
         Me.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -92,23 +93,26 @@ Partial Class AboutBox
         'panelImage
         '
         Me.panelImage.AutoSize = True
+        Me.panelImage.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.panelImage.BackgroundImage = CType(resources.GetObject("panelImage.BackgroundImage"), System.Drawing.Image)
         Me.panelImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.panelImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.panelImage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelImage.Location = New System.Drawing.Point(0, 0)
         Me.panelImage.Margin = New System.Windows.Forms.Padding(0)
         Me.panelImage.Name = "panelImage"
         Me.TableLayoutPanel1.SetRowSpan(Me.panelImage, 4)
-        Me.panelImage.Size = New System.Drawing.Size(150, 128)
+        Me.panelImage.Size = New System.Drawing.Size(201, 156)
         Me.panelImage.TabIndex = 0
         '
         'btnOK
         '
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOK.AutoSize = True
-        Me.btnOK.Location = New System.Drawing.Point(356, 397)
+        Me.btnOK.Location = New System.Drawing.Point(475, 489)
+        Me.btnOK.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(102, 27)
+        Me.btnOK.Size = New System.Drawing.Size(136, 33)
         Me.btnOK.TabIndex = 1
         Me.btnOK.Text = "OK"
         Me.btnOK.UseVisualStyleBackColor = True
@@ -119,10 +123,10 @@ Partial Class AboutBox
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblProductName.AutoSize = True
-        Me.lblProductName.Location = New System.Drawing.Point(150, 0)
+        Me.lblProductName.Location = New System.Drawing.Point(201, 0)
         Me.lblProductName.Margin = New System.Windows.Forms.Padding(0)
         Me.lblProductName.Name = "lblProductName"
-        Me.lblProductName.Size = New System.Drawing.Size(311, 32)
+        Me.lblProductName.Size = New System.Drawing.Size(414, 39)
         Me.lblProductName.TabIndex = 3
         Me.lblProductName.Text = "Product Name: "
         Me.lblProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -133,10 +137,10 @@ Partial Class AboutBox
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCopyRight.AutoSize = True
-        Me.lblCopyRight.Location = New System.Drawing.Point(150, 64)
+        Me.lblCopyRight.Location = New System.Drawing.Point(201, 78)
         Me.lblCopyRight.Margin = New System.Windows.Forms.Padding(0)
         Me.lblCopyRight.Name = "lblCopyRight"
-        Me.lblCopyRight.Size = New System.Drawing.Size(311, 32)
+        Me.lblCopyRight.Size = New System.Drawing.Size(414, 39)
         Me.lblCopyRight.TabIndex = 4
         Me.lblCopyRight.Text = "Copyright: "
         Me.lblCopyRight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -145,23 +149,25 @@ Partial Class AboutBox
         '
         Me.TableLayoutPanel1.SetColumnSpan(Me.txtDescription, 2)
         Me.txtDescription.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtDescription.Location = New System.Drawing.Point(3, 131)
+        Me.txtDescription.Location = New System.Drawing.Point(4, 160)
+        Me.txtDescription.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtDescription.Name = "txtDescription"
-        Me.txtDescription.Size = New System.Drawing.Size(455, 250)
+        Me.txtDescription.Size = New System.Drawing.Size(607, 307)
         Me.txtDescription.TabIndex = 7
         Me.txtDescription.Text = ""
         '
         'AboutBox
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(463, 431)
+        Me.ClientSize = New System.Drawing.Size(617, 530)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "AboutBox"
-        Me.Padding = New System.Windows.Forms.Padding(9)
+        Me.Padding = New System.Windows.Forms.Padding(12, 11, 12, 11)
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "AboutBox"
