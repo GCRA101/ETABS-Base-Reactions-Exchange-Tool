@@ -17,3 +17,4 @@ Limitations:
 	  with shell corner points will be neglected.
 	- Switch off Walls Automatic Meshing in the Source Model 
 	  prior to using this application
+- Currently only Linear Static Load Cases are supported.
