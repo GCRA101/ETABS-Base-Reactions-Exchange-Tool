@@ -36,7 +36,7 @@ Key features:
 5. A desktop shortcut will be added automatically.
 
 <p align="center">
-  <img src="docs/images/installation_process.png" alt="Installation process" width="500"/>
+  <img src="docs/images/installation_process.png" alt="Installation process" width="700"/>
 </p>
 
 ---
@@ -51,7 +51,7 @@ Before running the tool, ensure:
 - ⚠️ Only **Linear Static Load Cases** are currently supported.
 
 <p align="center">
-  <img src="docs/images/walls_meshing_options.png" alt="Walls Meshing Options" width="600"/>
+  <img src="docs/images/walls_meshing_options.png" alt="Walls Meshing Options" width="800"/>
 </p>
 
 ---
@@ -111,7 +111,7 @@ Example:
 BRE_20251026_HOI Substructure.edb
 
 <p align="center">
-  <img src="docs/images/output_model.png" alt="Output ETABS Model" width="600"/>
+  <img src="docs/images/output_model.png" alt="Output ETABS Model" width="800"/>
 </p>
 
 ---
