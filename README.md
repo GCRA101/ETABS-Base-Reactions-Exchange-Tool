@@ -106,9 +106,8 @@ The main window where users configure the transfer:
 The tool generates a **new ETABS model** with transferred reactions as point loads.
 
 **Output Naming Convention:**
-BRE_<Year><Month><Day>_<OriginalModelName>.edb
-Example:
-BRE_20251026_HOI Substructure.edb
+BRE_Year_Month_Day_OriginalModelName.edb.  
+**Example:** BRE_20251026_HOI Substructure.edb
 
 <p align="center">
   <img src="docs/images/output_model.png" alt="Output ETABS Model" width="800"/>
@@ -126,16 +125,4 @@ BRE_20251026_HOI Substructure.edb
 
 ## 📌 License
 
-This project is proprietary to **Buro Happold**.  
-Usage is restricted to authorized engineers and collaborators.
-
 ---
-
-## 🙌 Acknowledgements
-
-Developed by **Buro Happold Engineers** to streamline ETABS workflows and reduce manual errors in structural modeling.
-
-
-
-
-**Output Naming Convention:**
