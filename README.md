@@ -15,8 +15,8 @@ Key features:
 - Save outputs as new ETABS models with clear naming conventions.
 - Simplify workflows that would otherwise require multiple spreadsheets.
 
-<p align="center">
-  <img src="docs/images/transfer_example.png" alt="Transfer of Forces between SuperStructure and SubStructure Models" width="600"/>
+<p align="left">
+  <img src="docs/images/transfer_example.png" alt="Transfer of Forces between SuperStructure and SubStructure Models" width="800"/>
 </p>
 
 ---
@@ -29,8 +29,8 @@ Key features:
 4. A new folder `ETABS BRE Tool/` will be created containing all required files.
 5. A desktop shortcut will be added automatically.
 
-<p align="center">
-  <img src="docs/images/installation_process.png" alt="Installation process" width="700"/>
+<p align="left">
+  <img src="docs/images/installation_process.png" alt="Installation process" width="800"/>
 </p>
 
 ---
@@ -44,7 +44,7 @@ Before running the tool, ensure:
 - ✅ **Automatic Wall Meshing** is switched off in the Source model.
 - ⚠️ Only **Linear Static Load Cases** are currently supported.
 
-<p align="center">
+<p align="left">
   <img src="docs/images/walls_meshing_options.png" alt="Walls Meshing Options" width="800"/>
 </p>
 
@@ -55,14 +55,14 @@ Before running the tool, ensure:
 ### Splash Screen
 Displays logo, name, version, and copyright.
 
-<p align="center">
-  <img src="docs/images/splashscreen.png" alt="Splashscreen" width="400"/>
+<p align="left">
+  <img src="docs/images/splashscreen.png" alt="Splashscreen" width="500"/>
 </p>
 
 ### AboutBox
 Shows **features** and **limitations** of the tool. Always check this when new versions are released.
 
-<p align="center">
+<p align="left">
   <img src="docs/images/aboutbox.png" alt="AboutBox Window" width="500"/>
 </p>
 
@@ -78,7 +78,7 @@ The main window where users configure the transfer:
 - **Transfer Reactions** button
 - **Progress Bar**
 
-<p align="center">
+<p align="left">
   <img src="docs/images/inputs_form.png" alt="Inputs Form" width="300"/>
 </p>
 
