@@ -36,7 +36,7 @@ Key features:
 5. A desktop shortcut will be added automatically.
 
 <p align="center">
-  <img src="docs/images/installer.png" alt="Installation process" width="500"/>
+  <img src="docs/images/installation_process.png" alt="Installation process" width="500"/>
 </p>
 
 ---
@@ -51,7 +51,7 @@ Before running the tool, ensure:
 - ⚠️ Only **Linear Static Load Cases** are currently supported.
 
 <p align="center">
-  <img src="docs/images/walls_meshing.png" alt="Walls Meshing Options" width="600"/>
+  <img src="docs/images/walls_meshing_options.png" alt="Walls Meshing Options" width="600"/>
 </p>
 
 ---
