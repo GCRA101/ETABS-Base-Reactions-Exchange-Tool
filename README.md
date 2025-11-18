@@ -85,7 +85,7 @@ The main window where users configure the transfer:
 - **Progress Bar**
 
 <p align="center">
-  <img src="docs/images/inputs_form.png" alt="Inputs Form" width="600"/>
+  <img src="docs/images/inputs_form.png" alt="Inputs Form" width="300"/>
 </p>
 
 ---
